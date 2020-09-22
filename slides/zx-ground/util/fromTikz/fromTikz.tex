@@ -1,0 +1,23 @@
+\usepackage[utf8]{inputenc}
+\usepackage{stmaryrd}
+\SetSymbolFont{stmry}{bold}{U}{stmry}{m}{n}
+\usepackage{xfrac}
+\usepackage{braket}
+\usepackage{color}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{mathtools}
+
+% tikz package already loaded by 'tikz' option in the document class
+\usepackage{tikzit}
+\input{tikzstyles.tex}
+\input{tikzfigures.tex}
+\input{zx.tikzdefs}
+\input{zx.tikzstyles}
+
+\input{defs.tex}
+
+\makeatletter
+\begin{document}
+\tikzfig{\tikzFileInput}
+\end{document}

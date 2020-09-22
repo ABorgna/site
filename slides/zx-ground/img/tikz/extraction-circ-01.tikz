@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+    \begin{pgfonlayer}{nodelayer}
+        \node [style=none] (17) at (5.5, 0.75) {};
+        \node [style=none] (18) at (5.5, -0.75) {};
+        \node [style=none] (21) at (-5, 0.5) {};
+        \node [style=none] (22) at (-5, -0.5) {};
+        \node [style=cnot] (23) at (4.5, 0.75) {$\oplus$};
+        \node [style=small black dot] (24) at (4.5, -0.75) {};
+        \node [style=none] (25) at (3.5, 0.75) {};
+        \node [style=none] (26) at (3.5, -0.75) {};
+        \node [style=none] (27) at (0, 1.5) {};
+        \node [style=none] (28) at (0, -1.5) {};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+        \draw (23) to (24);
+        \draw (23) to (17.center);
+        \draw (24) to (18.center);
+        \draw (25.center) to (23);
+        \draw (26.center) to (24);
+    \end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,20 @@
+# Fdb version 3
+["pdflatex"] 1598524818 "/home/aborgna/src/phd/zx-quipper/ZX_discard_optimization/slidesJS/util/fromTikz/fromTikz.tex" "/home/aborgna/src/phd/zx-quipper/ZX_discard_optimization/slidesJS/util/fromTikz/fromTikz.pdf" "fromTikz" 1598524818
+  "/home/aborgna/src/phd/zx-quipper/ZX_discard_optimization/slidesJS/util/fromTikz/fromTikz.aux" 1598524818 8 a94a2480d3289e625eea47cd1b285758 ""
+  "/home/aborgna/src/phd/zx-quipper/ZX_discard_optimization/slidesJS/util/fromTikz/fromTikz.tex" 1598366289 486 c38274cd3a231ed9f738f91665806398 ""
+  "/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def" 1591545468 25742 5de23a2d2bc67a3139433e702e64a437 ""
+  "/usr/share/texmf-dist/web2c/texmf.cnf" 1591545468 33301 a3134070eacafb10b1f371612ce2650d ""
+  "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1595410937 2514048 7ab3eda38507535b76e6f8a891c8bab2 ""
+  "defs.tex" 1598365573 2073 93479063b96ee6db9dd3e708ae4cd675 ""
+  "fromTikz.aux" 0 -1 0 "pdflatex"
+  "fromTikz.tex" 1598366289 486 c38274cd3a231ed9f738f91665806398 ""
+  "tikzfigures.tex" 1598364152 10567 8f59d2fcaaf65dc5312eae039e7be873 ""
+  "tikzstyles.tex" 1598524815 26695 9d4615ed494f758b2573602bc9fe56eb ""
+  "zx.tikzdefs" 1598364163 2453 dccf1a7ae76b751b4c5cde09eb6e6405 ""
+  "zx.tikzstyles" 1598364168 2250 66fcf6194cf8d99bf61447acb7c1d8de ""
+  (generated)
+  "/home/aborgna/src/phd/zx-quipper/ZX_discard_optimization/slidesJS/util/fromTikz/fromTikz.log"
+  "fromTikz.pdf"
+  "/home/aborgna/src/phd/zx-quipper/ZX_discard_optimization/slidesJS/util/fromTikz/fromTikz.pdf"
+  "fromTikz.aux"
+  "fromTikz.log"

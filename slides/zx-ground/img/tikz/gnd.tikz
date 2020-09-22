@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=ground] (gnd) at (0, -1) {$\ground$};
+		\node [style=none] (1) at (1.25, 1) {};
+		\node [style=none] (2) at (-1.25, 1) {};
+		\node [style=none] (3) at (-1.25, -1) {};
+		\node [style=none] (4) at (1.25, -1) {};
+		\node [style=none] (9) at (0, 0) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (gnd.center) to (9.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

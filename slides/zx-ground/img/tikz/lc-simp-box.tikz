@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+    \begin{pgfonlayer}{nodelayer}
+        \node [style=Z phase dot] (0) at (-4.5, -0.75) {$\ \pm\frac\pi2\ $};
+        \node [style=Z phase dot] (4) at (-2, -0.75) {$\alpha_i$};
+        \node [style=none] (7) at (-1, -0.75) {};
+        \node [style=none] (16) at (-.375, -0.75) {$=$};
+        \node [style=none] (17) at (3.75, -0.75) {};
+        \node [style=Z phase dot] (30) at (2, -0.75) {$\ \alpha_i \!\pm\! \frac\pi2\ $};
+        \node [style=bang box] (49) at (-2, -0.75) {};
+        \node [style=bang box, minimum width=17.5mm] (50) at (2, -0.75) {};
+        \node [style=none] (51) at (2, 0.5) {};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+        \draw (7.center) to (4);
+        \draw [style=hadamard edge] (4) to (0);
+        \draw (17.center) to (30);
+        \draw [style=hadamard edge, in=180, out=150, looseness=1.25] (30) to (51.center);
+        \draw [style=hadamard edge, in=30, out=0, looseness=1.25] (51.center) to (30);
+    \end{pgfonlayer}
+\end{tikzpicture}

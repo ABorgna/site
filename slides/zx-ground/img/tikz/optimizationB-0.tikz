@@ -1,0 +1,46 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (-2, -2) {};
+		\node [style=ground, rotate=0] (1) at (-2, -2.75) {$\ground$};
+		\node [style=Z dot] (2) at (2, 0) {};
+		\node [style=none] (3) at (3, 0) {};
+		\node [style=Z dot] (4) at (2, -2) {};
+		\node [style=ground, rotate=0] (5) at (2, -2.75) {$\ground$};
+		\node [style=Z dot] (6) at (-2, 0) {};
+		\node [style=none] (7) at (-3, 0) {};
+		\node [style=Z phase dot] (9) at (0, 1) {$\pi$};
+		\node [style=Z dot] (10) at (2, 1) {};
+		\node [style=none] (11) at (3, 1) {};
+		\node [style=none] (12) at (-3, 1) {};
+		\node [style=Z dot] (13) at (-2, 1) {};
+		\node [style=Z dot] (14) at (0, 0) {};
+		\node [style=Z dot] (15) at (0, -1) {};
+		\node [style=Z dot] (16) at (-2, -1) {};
+		\node [style=Z dot] (17) at (2, -1) {};
+		\node [style=none] (18) at (-3, -1) {};
+		\node [style=none] (19) at (3, -1) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (1.center);
+		\draw (2) to (3.center);
+		\draw (4) to (5.center);
+		\draw [style=hadamard edge] (9) to (10);
+		\draw (7.center) to (6);
+		\draw (10) to (11.center);
+		\draw (12.center) to (13);
+		\draw [style=hadamard edge] (13) to (9);
+		\draw (18.center) to (16);
+		\draw (17) to (19.center);
+		\draw [style=hadamard edge] (6) to (14);
+		\draw [style=hadamard edge] (14) to (2);
+		\draw [style=hadamard edge] (16) to (15);
+		\draw [style=hadamard edge] (15) to (17);
+		\draw [style=hadamard edge] (9) to (0);
+		\draw [style=hadamard edge] (14) to (0);
+		\draw [style=hadamard edge] (9) to (4);
+		\draw [style=hadamard edge] (14) to (4);
+		\draw [style=hadamard edge] (15) to (4);
+		\draw [style=hadamard edge] (13) to (14);
+		\draw [style=hadamard edge] (14) to (10);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+    \begin{pgfonlayer}{nodelayer}
+        \node [style=none] (16) at (0, 0) {$=$};
+        \node [style=Z phase dot] (102) at (-8, 1) {$j\pi$};
+        \node [style=Z phase dot] (103) at (-5, 1) {$k\pi$};
+        \node [style=Z phase dot] (104) at (-11, 0) {$\alpha_i$};
+        \node [style=Z phase dot] (105) at (-6.5, -1.25) {$\beta_j$};
+        \node [style=Z phase dot] (106) at (-2, 0) {$\gamma_k$};
+        \node [style=none] (107) at (-12, 0) {};
+        \node [style=none] (108) at (-6.5, -2.25) {};
+        \node [style=none] (109) at (-1, 0) {};
+        \node [style=bang box] (110) at (-11, 0) {};
+        \node [style=bang box] (111) at (-6.5, -1.25) {};
+        \node [style=bang box] (112) at (-2, 0) {};
+        \node [style=Z phase dot] (113) at (2.75, 0) {$\ \alpha_i + k\pi\ $};
+        \node [style=Z phase dot] (114) at (7.25, -1.25) {$\ \beta_j + (j+k+1)\pi\ $};
+        \node [style=Z phase dot] (115) at (11.75, 0) {$\ \gamma_k + j\pi\ $};
+        \node [style=none] (116) at (1, 0) {};
+        \node [style=none] (117) at (7.25, -2.25) {};
+        \node [style=none] (118) at (13.5, 0) {};
+        \node [style=bang box, minimum width=17.5mm] (119) at (2.75, 0) {};
+        \node [style=bang box, minimum width=22.5mm] (120) at (7.25, -1.25) {};
+        \node [style=bang box, minimum width=17.5mm] (121) at (11.75, 0) {};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+        \draw (104) to (107.center);
+        \draw (105) to (108.center);
+        \draw (106) to (109.center);17
+        \draw [style=hadamard edge] (104) to (102);
+        \draw [style=hadamard edge] (102) to (105);
+        \draw [style=hadamard edge] (102) to (103);
+        \draw [style=hadamard edge] (103) to (105);
+        \draw [style=hadamard edge] (103) to (106);
+        \draw (113) to (116.center);
+        \draw (114) to (117.center);
+        \draw (115) to (118.center);
+        \draw [style=hadamard edge] (113) to (114);
+        \draw [style=hadamard edge] (114) to (115);
+        \draw [style=hadamard edge] (115) to (113);
+    \end{pgfonlayer}
+\end{tikzpicture}

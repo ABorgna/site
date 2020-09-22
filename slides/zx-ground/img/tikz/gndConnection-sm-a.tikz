@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+    \begin{pgfonlayer}{nodelayer}
+        \node [style=Z dot] (0) at (0, 0.5) {};
+        \node [style=ground, rotate=-90] (gnd0) at (-1, 0.5) {$\ground$};
+        \node [style=none] (2) at (1, 0.5) {};
+        \node [style=Z dot] (3) at (0, -0.5) {};
+        \node [style=ground, rotate=-90] (4) at (-1, -0.5) {$\ground$};
+        \node [style=none] (5) at (1, -0.5) {};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+        \draw (0) to (gnd0.center);
+        \draw (2.center) to (0);
+        \draw (3) to (4.center);
+        \draw (5.center) to (3);
+        \draw [style=hadamard edge] (0) to (3);
+    \end{pgfonlayer}
+\end{tikzpicture}
