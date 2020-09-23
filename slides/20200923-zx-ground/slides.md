@@ -254,7 +254,7 @@ layout: true
 
 **[translation]** Now using the ZX ground calculus we define **our** translation
 from mixed circuits to into diagrams,
-using a different method than the one defined in the Clifford Optimization.
+using a different approach than the one defined in the Clifford Optimization.
 
 **[IO labels]**
 Here we have to keep track on which of the inputs and outputs were quantum wires,
@@ -296,7 +296,7 @@ layout: false
 ]![:vspace 2em]()
 
 .padded[
-  - The translated diagram is *~~weakly~~* **strictly** *graph-like*
+  - The translated diagram is *~~weakly~~* strictly *graph-like*
 ]
 
 ???
@@ -413,16 +413,18 @@ addition introduced a number of new rules ones.
 
 # Ground-related optimizations
 
-.center[
+.padded[
+- New ground-related rules:
+]
 
-![:vspace 2em]()
+.center[
 
 Discarding: ![:hspace 1em]()
 ![:img 13%](img/tikz/gndDiscard-a.svg)
 \\(\ =\ \\)
 ![:img 10%](img/tikz/gndDiscard-b.svg)
 
-![:vspace 3em]()
+![:vspace 2em]()
 
 Ground-Pauli pivot: ![:hspace 1em]()
 ![:img 30%](img/tikz/gndDeletion-a.svg)
