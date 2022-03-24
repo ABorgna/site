@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (0) at (-3, 0) {};
+		\node [style=none] (1) at (5, -0.5) {};
+		\node [style=none] (2) at (-2.5, 2) {$\scriptstyle \Delta$};
+		\node [style=box] (3) at (-0.25, 0) {$M(|\Phi_1|)$};
+		\node [style=gather, rotate=180] (4) at (3, 0) {};
+		\node [style=none] (7) at (2, -0.5) {$\scriptstyle{A \multimap B}$};
+		\node [style=none] (8) at (4.5, 0) {$\scriptstyle{B}$};
+		\node [style=none] (9) at (-2.5, 0.5) {$\scriptstyle{\Gamma}$};
+		\node [style=box] (10) at (-0.25, 1.5) {$N(|\Phi_2|)$};
+		\node [style=none] (11) at (-3, 1.5) {};
+		\node [style=none] (12) at (3.75, 0.75) {};
+		\node [style=none] (13) at (3, 1.5) {};
+		\node [style=none] (14) at (1.75, 2) {$\scriptstyle{A}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (3);
+		\draw [in=-180, out=-30] (4) to (1.center);
+		\draw (3) to (4);
+		\draw (11.center) to (10);
+		\draw [in=-90, out=30] (4) to (12.center);
+		\draw [in=90, out=0] (13.center) to (12.center);
+		\draw (13.center) to (10);
+	\end{pgfonlayer}
+\end{tikzpicture}
