@@ -51,7 +51,7 @@ class: middle, title-slide, hide-count
 **[Quipper]**
 
 - Chosen as starting language Proto-Quipper-D.
-- Version of the well-known Proto-Quipper language
+- Formalization of the well-known Quipper language
   with linear dependant types
 - By Peter Selinger, with Francisco Rios and many other people
 - Interpreter implemented by Peng Fu
@@ -197,7 +197,7 @@ class: middle, title-slide, hide-count
 
 **[Terms]**
 
-- .TODO[Guided by syntaxis]
+- Syntax guided typing
 - Diferent lambda terms for states and parameters.
 - Foreach term to instantiate a parameter with multiple values.
 
@@ -217,7 +217,7 @@ class: middle, title-slide, hide-count
 
 .padded[
 - Alternative representation of quantum circuits
-  ![:vspace 1em]
+  ![:vspace .5em]
 
   .center[
   ![:img 40%](examples/bell.svg)
@@ -227,9 +227,11 @@ class: middle, title-slide, hide-count
   ![:hspace 6em]
   ]
 
-  ![:vspace 1em]
+  ![:vspace .5em]
 
 - Only topology matters
+
+- Corresponds to a compact closed category
 
 - Formal rewrite system
 
