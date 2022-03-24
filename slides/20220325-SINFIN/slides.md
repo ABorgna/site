@@ -88,12 +88,11 @@ class: middle, title-slide, hide-count
 - Supports dependent types
 
   ```haskell
-  accumap : ! forall a b c (n : Nat)
-            -> Vec (a -> c -> b * c) n -> c -> Vec a n -> Vec b n * c
-
   cnotN : ! forall (n : Nat) -> Vec Qubit n * Qubit -> Vec Qubit n * Qubit
   cnotN (ctrls, q) = accumap (λ c q -> flip $ CNot q c) q ctrls
   ```
+
+![:vspace .5em]
 
 - Compilation requires instantiation (e.g. `n = 3`)
   .center[
@@ -349,9 +348,9 @@ class: middle, title-slide, hide-count
 
 \\(
   \begin{prooftree}
-    \AxiomC{$\Gamma, x:A,\Phi \vdash M:B$}
+    \AxiomC{$\Gamma, x:{S_1},\Phi \vdash M:{S_2}$}
   \RightLabel{ $\multimap_i$}
-  \UnaryInfC{$\Gamma, \Phi \vdash \lambda x^A . M : B$}
+  \UnaryInfC{$\Gamma, \Phi \vdash \lambda x^{S_1} . M : {S_2}$}
   \end{prooftree}
   \quad
 \\)
@@ -363,10 +362,10 @@ class: middle, title-slide, hide-count
 
 \\(
   \begin{prooftree}
-    \AxiomC{$\Gamma,\Phi_1 \vdash M:A \multimap B$}
-    \AxiomC{$\Delta,\Phi_2 \vdash N:A$}
+    \AxiomC{$\Gamma,\Phi_1 \vdash M:{S_1} \multimap {S_2}$}
+    \AxiomC{$\Delta,\Phi_2 \vdash N:{S_1}$}
   \RightLabel{ $\multimap_e$}
-  \BinaryInfC{$\Gamma, \Delta, \Phi_1, \Phi_2 \vdash M\ N : B$}
+  \BinaryInfC{$\Gamma, \Delta, \Phi_1, \Phi_2 \vdash M\ N : {S_2}$}
   \end{prooftree}
   \quad
 \\)
@@ -387,7 +386,7 @@ class: middle, title-slide, hide-count
 
 ---
 
-# Some more term translations
+# More term translations
 
 .padded[
 - Parameter operations are interpreted at compilation-time
@@ -613,10 +612,6 @@ name: last
 ![:vspace .5em]()
 
 - Produced diagram sizes depend only on the length of the program (linearly)
-
-![:vspace .5em]()
-
-- Future work: Implement translation based on the *dpq* interpreter
 
 ]
 
