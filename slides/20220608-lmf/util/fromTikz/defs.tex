@@ -1,0 +1,67 @@
+% Math notation
+
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\newcommand{\C}{\ensuremath{\mathbb{C}}}
+\newcommand{\Dn}[1]{\ensuremath{\mathcal{D}_{#1}}} % Set of n-qubit density matrices
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\Ztwo}{\ensuremath{\mathbb{Z}_2}}
+
+\newcommand{\ketbra}[2]{\ket{#1}\!\!\bra{#2}}
+\renewcommand{\braket}[2]{\langle#1\mid#2\rangle}
+
+\DeclareMathOperator{\rank}{rank}
+
+% Symbols
+
+\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{shapes.gates.logic.US,shapes.gates.logic.IEC}
+
+\newcommand{\ground}{%
+	\begin{tikzpicture}[circuit ee IEC,yscale=1.0,xscale=1.0]
+	\draw[solid,arrows=-] (0,1ex) to (0,0) node[anchor=center,ground,rotate=-90,xshift=.66ex] {};
+	\end{tikzpicture}
+}
+
+%\usetikzlibrary{cd}
+%\newcommand{\bvdots}{%
+%  \tikz[baseline, every node/.style={inner sep=0}]{%
+%    \node at (0,0){.}; \node at (0,-3pt){.}; \node at (0,3pt){.};
+%  }
+%}
+\newcommand{\sground}{\scalebox{0.5}{\!\ground}}
+
+% ZX diagrams
+
+\newcommand{\zxGND}{\ensuremath{\text{ZX}_{\ground}}}
+\newcommand{\interpretZX}[1]{\bigl\llbracket{#1}\bigr\rrbracket}
+
+\newcommand{\toZxGND}[1]{G({#1})}
+\newcommand{\fromZxGND}[1]{G^{-1}(#1)}
+
+\newcommand{\figToZxGND}[1]{G\bigl({#1}\bigr)}
+\newcommand{\figFromZxGND}[1]{G^{-1}\bigl({#1}\bigr)}
+
+% - Gates
+
+\newcommand{\AND}{\ensuremath{\text{AND}}}
+\newcommand{\NAND}{\ensuremath{\text{NAND}}}
+\newcommand{\NOT}{\ensuremath{\text{NOT}}}
+\newcommand{\XOR}{\ensuremath{\text{XOR}}}
+\newcommand{\CNOT}{\ensuremath{\text{CNOT}}}
+\renewcommand{\H}{\ensuremath{\text{H}}}
+\newcommand{\Z}[1][]{\ensuremath{\text{Z}_{#1}}}
+
+% Matrix size annotations
+\newcommand{\annoted}[3]{{\scriptstyle~#1}\left\lbrace\mathrlap{\phantom{#3}}\right.\overbrace{#3}^{#2}}
+
+% gFlow
+\newcommand{\odd}{\mathsf{Odd}}
+
+% - Note making
+
+\newcommand{\TODO}[1]{{\color{red}TODO:~\color{darkgray}#1}\vspace*{0.5em}}
+\definecolor{orange}{RGB}{200,127,0}
+\newcommand{\NOTE}[1]{{\color{orange}NOTE:~\color{darkgray}#1}\vspace*{0.5em}}
+\newcommand{\citationneeded}{\textsuperscript{\color{red} [Citation needed] }}
+

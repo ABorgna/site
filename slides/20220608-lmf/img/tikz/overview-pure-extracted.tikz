@@ -1,0 +1,60 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (20) at (-2, 2.5) {};
+		\node [style=none] (21) at (-2, 1) {};
+		\node [style=none] (22) at (-2, -0.5) {};
+		\node [style=none] (23) at (-2, -2) {};
+		\node [style=small black dot] (31) at (0, 2.5) {};
+		\node [style=box] (33) at (1, 1) {$H$};
+		\node [style=small black dot] (34) at (2.5, 1) {};
+		\node [style=cnot] (35) at (2.5, -0.5) {$\oplus$};
+		\node [style=box] (39) at (2.5, -2) {$Z$};
+		\node [style=box] (40) at (5.5, -0.5) {$R_Z(\frac{3\pi}{2})$};
+		\node [style=box] (41) at (5.5, 1) {$T$};
+		\node [style=box] (43) at (7.5, 1) {$H$};
+		\node [style=box] (44) at (7.5, -0.5) {$H$};
+		\node [style=box] (45) at (7.5, -2) {$R_X(\frac{\pi}{2})$};
+		\node [style=small black dot] (48) at (9, 1) {};
+		\node [style=cnot] (49) at (9, -0.5) {$\oplus$};
+		\node [style=none] (53) at (10, 2.5) {};
+		\node [style=none] (54) at (10, 1) {};
+		\node [style=none] (55) at (10, -0.5) {};
+		\node [style=none] (56) at (10, -2) {};
+		\node [style=box] (57) at (5.5, 2.5) {$R_X(\frac{7\pi}{4})$};
+		\node [style=box] (58) at (2.5, 2.5) {$Z$};
+		\node [style=cnot] (59) at (0, -2) {$\oplus$};
+		\node [style=box] (60) at (-1, -0.5) {$H$};
+		\node [style=box] (61) at (-1, 1) {$S$};
+		\node [style=small black dot] (62) at (3.5, 1) {};
+		\node [style=small black dot] (63) at (3.5, -0.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (34) to (35);
+		\draw (33) to (34);
+		\draw (39) to (45);
+		\draw (40) to (44);
+		\draw (41) to (43);
+		\draw (48) to (49);
+		\draw (43) to (48);
+		\draw (48) to (54.center);
+		\draw (49) to (55.center);
+		\draw (31) to (58);
+		\draw (20.center) to (31);
+		\draw (23.center) to (59);
+		\draw (31) to (59);
+		\draw (58) to (57);
+		\draw (57) to (53.center);
+		\draw (45) to (56.center);
+		\draw (59) to (39);
+		\draw (44) to (49);
+		\draw (35) to (63);
+		\draw (63) to (40);
+		\draw (34) to (62);
+		\draw (62) to (41);
+		\draw (62) to (63);
+		\draw (21.center) to (61);
+		\draw (22.center) to (60);
+		\draw (60) to (35);
+		\draw (61) to (33);
+	\end{pgfonlayer}
+\end{tikzpicture}
