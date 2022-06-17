@@ -1,0 +1,15 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (40) at (2.75, 0.5) {$\scriptstyle{\llbracket A \rrbracket \times n}$};
+		\node [style=none] (42) at (4, 0) {};
+		\node [style=none] (43) at (-4, 0) {};
+		\node [style=box] (44) at (0, 0) {$\scriptstyle{M(k)}$};
+		\node [style=none] (45) at (-2.75, 0.5) {$\scriptstyle{\llbracket \Gamma \rrbracket \times n}$};
+		\node [style=bang box] (46) at (0, 0) {};
+		\node [style=none] (47) at (0, -1.5) {$\scriptscriptstyle{k \in V(\Phi)}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (43.center) to (44);
+		\draw (44) to (42.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

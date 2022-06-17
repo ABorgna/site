@@ -1,0 +1,30 @@
+module Bell where
+import "lib/Prelude.dpq"
+
+accumap : ! forall a b c (n : Nat) -> !(a -> c -> b * c) -> c -> Vec a n -> Vec b n * c
+accumap f c l =
+  case l of
+    VNil -> (VNil, c)
+    VCons x xs ->
+      let
+        (x, c') = f x c
+        (l', c'') = accumap f c' xs
+      in (VCons x l', c'')
+
+flip : ! forall a b -> (a * b) -> (b * a)
+flip p = let (a,b) = p in (b, a)
+
+cnotN : ! forall (n : Nat) -> Vec Qubit n -> Qubit -> Vec Qubit n * Qubit
+cnotN ctrls q = 
+  case ctrls of
+    VNil -> (VNil, q)
+    VCons c ctrls' ->
+      let
+        (q, c) = CNot q c
+        (ctrls', q) = cnotN ctrls' q
+      in (VCons c ctrls', q)
+
+cnotN' : ! forall (n : Nat) -> Vec Qubit n -> Qubit -> Vec Qubit n * Qubit
+cnotN' ctrls q = accumap (λ c q -> flip $ CNot q c) q ctrls
+
+main = box (Vec Qubit three * Qubit) $ \qs -> let (ctrls, q) = qs in cnotN' ctrls q

@@ -1,0 +1,11 @@
+module Bell where
+import "lib/Prelude.dpq"
+
+bell00 : ! (Unit -> Qubit * Qubit)
+bell00 u = 
+  let x = Init0 ()
+      y = Init0 ()
+      x' = H x
+  in CNot y x'
+
+main = boxCirc bell00

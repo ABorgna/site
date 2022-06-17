@@ -1,0 +1,53 @@
+@import url(./mtheme.css);
+
+.TODO {
+    display: inline;
+    font-family: 'Fira Mono';
+    font-size: 20px;
+    color: rgb(255, 0, 0);
+}
+
+.columns {
+  display: flex;
+}
+
+.column50 {
+  width: 50%;
+}
+
+.red {
+    color: red;
+}
+
+.blue {
+    color: blue;
+}
+
+.hpadded {
+  padding: 0 4em;
+}
+
+.padded {
+  padding: 1em 4em;
+}
+
+.opacity70 {
+  opacity: 0.7;
+}
+
+.underline {
+  text-decoration:underline;
+}
+
+.inverse {
+  color: #fafafa;
+  font-size: normal;
+}
+
+.bold {
+  font-family: 'Fira Sans SemiBold', sans-serif;
+}
+
+.remark-slide-content.noheader {
+  border: none;
+}

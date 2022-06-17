@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Encoding High-Level Quantum Programs as SZX-Diagrams</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="./slides.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <script>
+      MathJax = {
+        options: {
+          skipHtmlTags: ['script', 'noscript', 'style', 'textarea', 'pre']
+        },
+        loader: {load: ['[tex]/bussproofs', '[tex]/color']},
+        tex: {
+          macros: {
+            zxGnd: '\\text{ZX}^⏚',
+            ketbra: ['\\vert #1 \\rangle\\langle #2 \\vert', 2],
+            trans: ['⟦#1⟧', 1],
+            nat: 'ℕ',
+            qubit: '\\mathsf{Qubit}',
+            vec: ['\\mathsf{Vec}\\ {#2}\\ {#1}', 2],
+            Qcompose: '\\mathsf{compose}',
+            Qsplit: '\\mathsf{split}',
+            Qaccumap: '\\mathsf{accuMap}',
+            Qfor: ['\\mathsf{for}\\ {#1}\\ \\mathsf{in}\\ {#2}\\ \\mathsf{do}\\ {#3}', 3],
+            ifz: ['\\mathsf{ifz}\\ {#1}\\ \\mathsf{do}\\ {#2}\\ \\mathsf{else}\\ {#3}', 3],
+            Qlet: ['\\mathsf{let}\\ {#1}\\ = {#2}\\ \\mathsf{in}\\ {#3}', 3],
+            cgrey: ['{\\color{grey}{#1}}', 1],
+            cblack: ['{\\color{black}{#1}}', 1],
+          },
+          packages: {
+            '[+]': ['bussproofs', 'color']
+          }
+        }
+      };
+    </script>
+    <script src="./js/mathjax/es5/tex-chtml.js" type="text/javascript"></script>
+
+    <script src="./js/remark-0.14.0.min.js" type="text/javascript"></script>
+
+    <script src="./slides.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      var remarkOptions = {
+        sourceUrl: 'slides.md',
+        countIncrementalSlides: false,
+        ratio: '16:9',
+        slideNumberFormat: function (current, total) {
+          // Don't count the appendix
+          var lastSlide = this.getSlideByName('last');
+          if(typeof(lastSlide) != 'undefined') {total = lastSlide.getSlideIndex()+1;};
+
+          // First page is 0
+          current -= 1; 
+          total -= 1;
+          if (current > total) {
+            current = '+'.repeat(current - total);
+          }
+          return '\\(\\vert'+current+'\\rangle\\langle'+total+'\\vert\\)';
+        },
+      };
+      var renderMath = function() {MathJax.typeset();};
+
+      var slideshow = remark.create(remarkOptions, renderMath);
+
+      /*
+      slideshow.on('afterShowSlide', function (slide) {
+        //console.debug(slide);
+        console.log("Slide index:", slide.getSlideIndex());
+      });
+      */
+
+    </script>
+  </body>
+</html>
