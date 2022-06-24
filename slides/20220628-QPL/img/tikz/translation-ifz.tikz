@@ -1,0 +1,24 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (3.75, 0) {};
+		\node [style=box, inner sep=.5em] (3) at (0, -0.75) {$\substack{N \\ \scriptstyle{k \in [0]^{\otimes \delta_{l>0}}}}$};
+		\node [style=none] (9) at (-4, 0.5) {$\scriptstyle{\Gamma}$};
+		\node [style=box, inner sep=.5em] (10) at (0, 0.75) {$\substack{M \\ \scriptstyle{k \in [0]^{\otimes \delta_{l=0}}}}$};
+		\node [style=gather] (12) at (3, 0) {};
+		\node [style=none] (13) at (2.75, -1) {$\scriptstyle{A^{\otimes \delta_{l>0}}}$};
+		\node [style=none] (14) at (3.5, 0.5) {$\scriptstyle{A}$};
+		\node [style=gather, rotate=180] (15) at (-3.5, 0) {};
+		\node [style=none] (16) at (-4.25, 0) {};
+		\node [style=none] (17) at (-2.75, 1.25) {$\scriptstyle{\Gamma^{\otimes \delta_{l=0}}}$};
+		\node [style=none] (18) at (-2.75, -1) {$\scriptstyle{\Gamma^{\otimes \delta_{l>0}}}$};
+		\node [style=none] (19) at (2.75, 1.25) {$\scriptstyle{A^{\otimes \delta_{l=0}}}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=bold edge] (12.center) to (1.center);
+		\draw [style=bold edge, in=150, out=0, looseness=1.25] (10) to (12.center);
+		\draw [style=bold edge, in=210, out=0, looseness=1.25] (3) to (12.center);
+		\draw [style=bold edge, in=180, out=30] (15.center) to (10);
+		\draw [style=bold edge, in=180, out=-30] (15.center) to (3);
+		\draw [style=bold edge] (16.center) to (15.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,154 @@
+% Math notation
+
+\newcommand{\bigo}{\ensuremath{\mathcal{O}}}
+\newcommand{\Dn}[1]{\ensuremath{\mathcal{D}_{#1}}} % Set of n-qubit density matrices
+\newcommand{\N}{\ensuremath{\mathbb{N}}}
+\newcommand{\R}{\ensuremath{\mathbb{R}}}
+\newcommand{\W}{\ensuremath{\mathbb{W}}}
+\newcommand{\Ztwo}{\ensuremath{\mathbb{Z}_2}}
+\newcommand{\Ftwo}{\ensuremath{\mathbb{F}_2}}
+\newcommand{\one}{\ensuremath{\mathbbm{1}}}
+\newcommand{\diag}{\ensuremath{\mathscr{D}}} % Set of diagrams
+\ifdefined\C
+  \renewcommand{\C}{\ensuremath{\mathbb{C}}}
+\else
+  \newcommand{\C}{\ensuremath{\mathbb{C}}}
+\fi
+\ifdefined\U
+  \renewcommand{\U}{\mathtt{U}}
+\else
+  \newcommand{\U}{\mathtt{U}}
+\fi
+\ifdefined\R
+  \renewcommand{\R}{\mathtt{R}}
+\else
+  \newcommand{\R}{\mathtt{R}}
+\fi
+\newcommand{\ketbra}[2]{\ket{#1}\!\!\bra{#2}}
+\renewcommand{\braket}[2]{\langle#1\mid#2\rangle}
+\newcommand{\imod}[2]{{#1}\ \text{mod}\ {#2}} % integer modulo, n mod k
+\newcommand{\idiv}[2]{{#1}\ \text{div}\ {#2}} % integer div, n div k
+
+\DeclareMathOperator{\rank}{rank}
+\DeclarePairedDelimiter\abs{\lvert}{\rvert}
+
+% Types and terms
+\newcommand{\bang}[1]{!^{#1}}
+\newcommand{\meas}{\mathtt{meas}}
+\newcommand{\new}{\mathtt{new}}
+\newcommand{\bit}{\mathtt{B}}
+\newcommand{\qubit}{\mathtt{Q}}
+\renewcommand{\unit}{\mathtt{Unit}}
+\newcommand{\nat}{\mathtt{Nat}}
+\renewcommand{\vec}[2]{\mathtt{Vec}\ {#2}\ {#1}}
+\newcommand{\Qlet}[3]{\mathtt{let\ }{#1}={#2}\mathtt{\ in\ }{#3}}
+\newcommand{\Qfold}{\mathtt{fold}}
+\newcommand{\Qmap}{\mathtt{map}}
+\newcommand{\Qaccumap}{\mathtt{accuMap}}
+\newcommand{\Qsplit}{\mathtt{split}}
+\newcommand{\Qappend}{\mathtt{append}}
+\newcommand{\Qcompose}{\mathtt{compose}}
+\newcommand{\Qfor}[3]{\mathtt{for\ }{#1}\mathtt{\ in\ }{#2}\mathtt{\ do\ }{#3}}
+\newcommand{\ifz}[3]{\mathtt{ifz\ }{#1}\mathtt{\ then\ }{#2}\mathtt{\ else\ }{#3}}
+\newcommand{\vnil}{\mathtt{VNil}}
+\newcommand{\Qrange}{\mathtt{range\ }}
+\newcommand{\lambdaD}{\ensuremath{\lambda_D}}
+\newcommand{\Qdrop}{\mathtt{drop}}
+
+\newcommand{\trans}[1]{\left\llbracket{#1}\right\rrbracket}
+\newcommand{\eval}[1]{\left\lfloor{#1}\right\rfloor}
+\newcommand{\dual}[1]{{#1}^\bot}
+\newcommand{\types}[1]{types({#1})} % For the list of types in a context
+
+% Categories
+\newcommand{\interpret}[1]{\left\{\!\!\!\left\{{#1}\right\}\!\!\!\right\}}
+\newcommand{\CPMo}{\ensuremath{\overline{\mathbf{CPMs}}^\oplus}}
+\newcommand{\CPMs}{\textbf{CPMs}~}
+\newcommand{\CPM}{\textbf{CPM}~}
+% Symbols
+
+\usetikzlibrary{circuits.ee.IEC}
+\usetikzlibrary{shapes.gates.logic.US,shapes.gates.logic.IEC}
+
+\newcommand{\ground}{%
+    \begin{tikzpicture}[circuit ee IEC,yscale=1.0,xscale=1.0]
+    \draw[solid,arrows=-] (0,1ex) to (0,0) node[anchor=center,ground,rotate=-90,xshift=.66ex] {};
+    \end{tikzpicture}
+}
+
+%\usetikzlibrary{cd}
+%\newcommand{\bvdots}{%
+%  \tikz[baseline, every node/.style={inner sep=0}]{%
+%    \node at (0,0){.}; \node at (0,-3pt){.}; \node at (0,3pt){.};
+%  }
+%}
+\newcommand{\sground}{\scalebox{0.5}{\!\ground}}
+
+% ZX diagrams
+
+\newcommand{\zxGND}{\ensuremath{\text{ZX}_{\ground}}}
+\newcommand{\szxGND}{\ensuremath{\text{SZX}_{\ground}}}
+\newcommand{\zxB}{\ensuremath{\text{ZX}^!}}
+
+% Matrix size annotations
+\newcommand{\annoted}[3]{{\scriptstyle~#1}\left\lbrace\mathrlap{\phantom{#3}}\right.\overbrace{#3}^{#2}}
+
+% - Note making
+
+\definecolor{orange}{RGB}{200,127,0}
+\newcommand{\TODOtxt}[1]{{\color{red}TODO:~\color{darkgray}#1}\vspace*{0.5em}}
+\newcommand{\NOTEtxt}[1]{{\color{orange}NOTE:~\color{darkgray}#1}\vspace*{0.5em}}
+\newcommand{\citationneeded}{\textsuperscript{\color{red} [Citation needed] }}
+\newcommand{\TODO}[1]{\pdfmargincomment[icon=Insert,color=red]{#1}}
+\newcommand{\NOTE}[1]{\pdfmargincomment[icon=Note,color=orange]{#1}}
+\newcommand{\NOTEab}[1]{\pdfmargincomment[icon=Note,color=purple,author=AB]{#1}}
+\newcommand{\NOTErr}[1]{\pdfmargincomment[icon=Note,color=brown,author=RR]{#1}}
+
+% ------ Theorems, lemmas and things -------------
+%\numberwithin{sect}{section}% [if desired]
+%\numberwithin{equation}{section}
+%\theoremclass{Theorem}
+%\theoremstyle{plain}
+%\theorembodyfont{\upshape}
+%\newtheorem{thm}[equation]{Theorem}
+%
+%\theoremstyle{plain}
+%\theorembodyfont{\upshape}
+%\newtheorem{lemma}[equation]{Lemma}
+%\newtheorem*{lemmaN}[equation]{Lemma} % non-numbered
+%\newtheorem{prop}[equation]{Proposition}
+%\newtheorem{cor}[equation]{Corollary}
+%
+%%\newtheoremstyle{plainN} % Plain style, without numbering
+%%%{\item[\hskip\labelsep \theoremheaderfont {##1}\theoremseparator]}
+%%{\item[\hskip{##1}]}
+%%{\item[\hskip\labelsep \theoremheaderfont {##1}\ {##3}\theoremseparator]}
+%%\theoremstyle{plainN}
+%%\newtheorem{thmN}{Theorem}
+%%\newtheorem{lemmaN}{Lemma}
+%
+%\theoremstyle{plain}
+%\theorembodyfont{\upshape}
+%\theoremsymbol{\ensuremath{\square}}
+%%\newtheorem*{proof}{Proof}
+%
+%\theoremstyle{plain}
+%\theorembodyfont{\upshape}
+%\theoremsymbol{}
+%\newtheorem{defn}[equation]{Definition}
+%\newtheorem{conj}[equation]{Conjecture}
+%\newtheorem{rem}[equation]{Remark}
+%\newtheorem*{note}{Note}
+%
+%\theoremstyle{plain}
+%%\theoremindent1\parindent
+%%\theoremheaderfont{\kern-1\parindent\normalfont\bfseries} 
+%\theoremsymbol{}
+%\newtheorem{example}[equation]{Example}
+%
+%%\newcommand{\qedhere}{\qed}
+%
+%\newcommand{\xqed}[1][\ensuremath{\square}]{%
+%  \leavevmode\unskip\penalty9999 \hbox{}\nobreak\hfill
+%  \quad\hbox{\ensuremath{#1}}
+%}

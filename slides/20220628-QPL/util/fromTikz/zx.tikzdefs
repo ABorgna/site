@@ -1,0 +1,80 @@
+\usepackage{xspace}
+\usepackage{bm}
+
+\definecolor{zx_white}{RGB}{255,255,255}
+\definecolor{zx_grey}{RGB}{211,211,211}
+\definecolor{zx_black}{RGB}{105,105,105}
+
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{fadings}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.markings}
+
+\newcommand{\SpiderRule}{\ensuremath{(\bm f)}\xspace}
+\newcommand{\FusionRule}{\SpiderRule}
+\newcommand{\PiRule}{\ensuremath{(\bm \pi)}\xspace}
+\newcommand{\CopyRule}{\ensuremath{(\bm c)}\xspace}
+\newcommand{\HadamardRule}{\ensuremath{(\bm{h})}\xspace}
+\newcommand{\IdentityRule}{\ensuremath{(\bm{i1})}\xspace}
+\newcommand{\IdRule}{\IdentityRule}
+\newcommand{\HCancelRule}{\ensuremath{(\bm{i2})}\xspace}
+\newcommand{\IdIIRule}{\HCancelRule}
+\newcommand{\HHRule}{\HCancelRule}
+\newcommand{\BialgRule}{\ensuremath{(\bm b)}\xspace}
+\newcommand{\BialgebraRule}{\BialgRule}
+\newcommand{\SCRule}{\BialgRule}
+\newcommand{\StrongCompRule}{\BialgRule}
+\newcommand{\HopfRule}{\ensuremath{(\bm a)}\xspace}
+\newcommand{\AntipodeRule}{\HopfRule}
+\newcommand{\CompRule}{\HopfRule}
+\newcommand{\PiCopyRule}{\ensuremath{(\bm{\pi c})}\xspace}
+
+\newcommand{\LocalCompRule}{\ensuremath{(\bm{LC})}}
+\newcommand{\PivotRule}{\ensuremath{(\bm{p})}}
+
+\newcommand{\GndRemoveRule}{\ensuremath{(\bm{k})}}
+\newcommand{\GndHadamardRule}{\ensuremath{(\bm{l})}}
+\newcommand{\GndDiscardRule}{\ensuremath{(\bm{m})}}
+\newcommand{\GndHDiscardRule}{\ensuremath{(\bm{ml})}}
+\newcommand{\GndCNOTRule}{\ensuremath{(\bm{n})}}
+
+\newcommand{\LocalCompGndRule}{\ensuremath{(\bm{LC}^{\ground})}}
+\newcommand{\PivotGndRule}{\ensuremath{(\bm{p}^{\ground})}}
+\newcommand{\PauliPivotGndRule}{\ensuremath{(\bm{pp}^{\ground})}}
+\newcommand{\RowSumGndRule}{\ensuremath{(\bm{+})}}
+
+%% small versions
+\newcommand{\antipoderule}{{\footnotesize\AntipodeRule}}
+\newcommand{\picopyrule}{{\footnotesize\PiCopyRule}}
+\newcommand{\comprule}{{\footnotesize\CompRule}}
+\newcommand{\hopfrule}{{\footnotesize\HopfRule}}
+\newcommand{\strongcomprule}{{\footnotesize\StrongCompRule}}
+\newcommand{\scrule}{{\footnotesize\SCRule}}
+\newcommand{\bialgebrarule}{{\footnotesize\BialgebraRule}}
+\newcommand{\bialgrule}{{\footnotesize\BialgRule}}
+\newcommand{\idiirule}{{\footnotesize\IdIIRule}}
+\newcommand{\hcancelrule}{{\footnotesize\HCancelRule}}
+\newcommand{\idrule}{{\footnotesize\IdRule}}
+\newcommand{\identityrule}{{\footnotesize\IdentityRule}}
+\newcommand{\hadamardrule}{{\footnotesize\HadamardRule}}
+\newcommand{\hhrule}{\hadamardrule}
+\newcommand{\copyrule}{{\footnotesize\CopyRule}}
+\newcommand{\pirule}{{\footnotesize\PiRule}}
+\newcommand{\spiderrule}{{\footnotesize\SpiderRule}}
+\newcommand{\fusionrule}{{\footnotesize\SpiderRule}}
+
+\newcommand{\localCompRule}{{\footnotesize\LocalCompRule}}
+\newcommand{\pivotRule}{{\footnotesize\PivotRule}}
+
+\newcommand{\gndRemoveRule}{{\footnotesize\gndRemoveRule}}
+\newcommand{\gndHadamardRule}{{\footnotesize\gndHadamardRule}}
+\newcommand{\gndDiscardRule}{{\footnotesize\gndDiscardRule}}
+\newcommand{\gndHDiscardRule}{{\footnotesize\gndHDiscardRule}}
+\newcommand{\gndCNOTRule}{{\footnotesize\GndCNOTRule}}
+
+\newcommand{\localCompGndRule}{{\footnotesize\LocalCompGndRule}}
+\newcommand{\pivotGndRule}{{\footnotesize\PivotGndRule}}
+\newcommand{\pauliPivotGndRule}{{\footnotesize\PauliPivotGndRule}}
+\newcommand{\rowSumGndRule}{{\footnotesize\RowSumGndRule}}
+
+\newcommand{\comp}[1]{\overline{#1}}

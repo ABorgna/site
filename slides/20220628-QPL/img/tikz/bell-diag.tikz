@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (0, 0.75) {};
+		\node [style=none] (3) at (1.5, -0.75) {};
+		\node [style=none] (11) at (1.5, 0.75) {};
+		\node [style=X dot] (23) at (0, -0.75) {};
+		\node [style=hadamard] (24) at (-1.5, 0.75) {};
+		\node [style=X dot] (25) at (-3, 0.75) {};
+		\node [style=X dot] (26) at (-3, -0.75) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (23) to (3.center);
+		\draw (0) to (23);
+		\draw (0) to (11.center);
+		\draw (24) to (0);
+		\draw (26) to (23);
+		\draw (25) to (24);
+	\end{pgfonlayer}
+\end{tikzpicture}
