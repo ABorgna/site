@@ -145,9 +145,9 @@ class: middle, title-slide, hide-count
 
 ![:vspace 1em]
 
-![:hspace .4em]❗ Is still restricted to non-generic operations.
+![:hspace .4em]❗ Is still restricted to non-generic operations
 
-![:hspace .4em]❗ The compiled diagram has the same size complexity as the quantum circuit.
+![:hspace .4em]❗ The compiled diagram has the same size complexity as the quantum circuit
 
 ]
 
