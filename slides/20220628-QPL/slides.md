@@ -21,17 +21,10 @@ class: middle, title-slide, hide-count
 **[Intro]**
 
 - Work with Rafael Romero.
-- Compiling high-level quantum programs into an
-  intermediate representation that can be used for optimization.
-- Won't talk much about quantum computing,
-  just describe it from an operational level.
+- Describing a compilation method from high-level quantum programs into an
+  **intermediate representation** language that may be used for efficient optimization or verification.
 
-**[Metadata]**
-
-- 20 mins long
-- Remove types slide
-- add initialization boxes
-- present ZX and SZX before the fragment (so we can give aSZX )
+(20 mins long)
 
 ---
 
@@ -59,34 +52,33 @@ class: middle, title-slide, hide-count
 ???
 **[Quipper]**
 
-- Chosen as starting language Proto-Quipper-D.
-- Formalization of the well-known Quipper language
-  with linear dependant types
-- By Peter Selinger, with Francisco Rios and many other people
-- Interpreter implemented by Peng Fu
+- To describe introduce the compilation, we first must start with
+  a description language for quantum programs.
+- To this end we have chosen Proto-Quipper, a family of formalization languages for the Quipper 
+  quantum programming language.
+- Specifically, we are using **a fragment** of the recent Proto-Quipper-D variation, which provides linear depent types.
+<!-- - By Peter Selinger, with Francisco Rios and many other people -->
+<!-- - Interpreter implemented by Peng Fu -->
 
 **[Use]**
 
-- We describe quantum computations
-  as maps between lists of "qubit" elements by composing primitive operations. 
+- In this language, we can describe quantum computations
+  as maps between lists of "qubit" elements that are composed from primitive operations.
+- Using a syntax similar to Haskell.
 - Here, for example, we have a description of a program
-  (in a Haskell-like syntax)
-  that takes no input and produces a pair of qubits in a
-  special state (called a Bell state).
-- For this, the program initializes two new qubits,
-  and then applies a series of predefined "quantum gates" to them.
-- Important: Qubits are linear resources, this must type check.
+  that receives no input and produces a pair of qubits in a Bell state.
+- We can write directly by composing primitives to initialize the qubits,
+  apply a Hadamard gate, and then a CNOT.
+- Ase Qubits are linear resources, the type system ensures that we never clone nor discard one.
 
 **[Circuits]**
 
-- To be able to run on an actual quantum computer,
-  the quantum operations are commonly compiled to quantum circuits,
-  represented similarly to digital electronic circuits.
-- Qubits as wires, predefined set of gates.
-- Initialization, Hadamard, CNOT, etc.
-
-**[Cue generics]**
-- What if instead of a pair we had a list of qubits?
+- To be able to run on a quantum computer,
+  we must first generate a quantum circuit from this description.
+- So for example, here we have the result of compiling this program.
+- We can see the initialization, hadamard, and CNOT.
+- It is important to note that in this version of the language we will always compile
+  the complete program before executing.
 
 ---
 
@@ -113,21 +105,23 @@ class: middle, title-slide, hide-count
 ???
 **[Dependent types]**
 
-- Proto-Quipper-D supports dependent types.
-- This means that we can have types that depends on values.
-- For example, we can have a function that operates with vectors of qubits
-  with a parametric size.
+- As I mentioned, in Proto-Quipper-D we have dependent types.
+- This means that we can write programs where the types depend on the value of some parameter.
 
 **[CNOTs]**
-- Here we have a function that takes a list of n "control" qubits and a target,
-  and applies the two-qubit CNOT operation once per element of the list.
+- For example, here we have a function that receives a target qubit and a list of `n` "control" qubits, for any non-negative `n`.
+- it then applies the two-qubit CNOT operation, using as controls each one of the elements of the list.
 
 **[Instantiation]**
-- If we want to show this as a circuit,
+- If we want to generate a circuit from this program,
   we must first instantiate the n parameter to a concrete value.
-- Here we see that for `n=3` we produce the desired circuit,
-  with list and extra qubit as inputs and the application of a 
-  CNOT operation using each element of the list.
+- For example we may pick `n=3`, and just then we can produce this circuit here,
+- where we see that we have the list of 3 qubits and the target as inputs,
+ and we do a CNOT operation using each element of the list.
+
+**[cue ZX]**
+- You may wonder then, if there is some **low-level** intermediate representation between the programs and the circuits
+- which is able to encode the parametricity in a compact manner.
 
 ---
 
@@ -160,22 +154,23 @@ class: middle, title-slide, hide-count
 
 **[ZX]**
 
-- More granular representation of quantum circuits
-- Undirected graphs with two-coloured nodes, and yellow generator
-- Nodes may be tagged with a phase
-- Can translate a quantum circuit directly (CNOT is now two nodes)
-- Topology: It's a graph, so nodes and edges can be moved around
-- Formally, it corresponds to a compact closed symmetric monoidal category
-- Complete formal rewrite system lets us define formally proven optimization procedures
+- To that end we use the ZX-calculus, which is a formal graphical language
+- that provides more granular representation of quantum operations than the circuits.
+- **In contrast** to the circuits, we only care about the topology of the diagrams
+  and not about the position of the nodes.
+- As such, we may think of the diagrams as undirected open graphs with three kinds of nodes,
+  and some phase labels.
+- This calculus has been succesfully used in optimization and verification tecniques,
+- as its formal rewrite system lets us define formally prove equivalenes between diagrams.
 
 **[Limitations]**
 
-- Edges carry the information of one qubit
-- Still restricted to representing concrete circuits
+- In this diagrams, edges carry one qubit of information,
+- We are still restricted to only represent concrete circuits
 
 ---
 
-# SZX Diagrams
+# The SZX extension
 
 .padded[
 - Introduces multi-qubit wires (in bold) and gatherer/splitter nodes
@@ -185,7 +180,7 @@ class: middle, title-slide, hide-count
 
 - Can encode parallel and iterative operations
   .center[
-  `CnotN` → ![:img 40%](img/tikz/cnots-szx.svg)
+  `CnotN` → \\(\qquad n \mapsto\ \\) ![:img 40%](img/tikz/cnots-szx.svg)
   ]
 ]
 
@@ -194,16 +189,28 @@ class: middle, title-slide, hide-count
 **[SZX]**
 
 - The Scalable extension of the ZX calculus (SZX) lifts this restriction,
-  by allowing to represent quantum circuits with an arbitrary number qubit in a compact form
-- Edges of the graph may carry the information of multiple qubits
-- Tag wires in bold
-- Introduces a gatherer/splitter node
+  by the edges of the graph to carry the information of multiple qubits.
+- We draw this extended edges in bold and tag them with their capacity.
+- The calculus also introduces a gatherer/splitter node that lets us
+  merge and separate these wires.
 
 **[Example]**
 
-- Cnots takes a list of n qubits and a target
-- Bold CNOT is n cnots in parallel
-- Loops around, applying  target to each of them
+- Using this extension, we can now effectively encode the `cnotN` operation from before,
+- which took a list of n control qubits and a target and applied CNOT operation over them.
+- We define it as family of diagrams indexed over `n`.
+
+- For this we use this looping construction, where we have `n` CNOT gates in parallel,
+  each one applied to the corresponding elements in both of these lists.
+
+- We take the input of the target qubit, and put it as the first element of this list,
+  where it is used in a CNOT with the first control qubit.
+- We then take that target qubit and loop it back, putting it now as the second element of the list.
+- We repeat this until we have applied all the CNOTS, and then connect the target to the output.
+
+**[cue Fragment]**
+- We can now use this idea to formalize a compilation procedure,
+- but first we must define which of the starting Proto-Quipper-D programs we are able to encode.
 
 ---
 
@@ -224,7 +231,7 @@ class: middle, title-slide, hide-count
 
 - We use a simplified fragment with bounded programs (no explicit recursion)
 
-- Additional list-manipulation operations
+- Additional list-manipulation operations (`accuMap`, `split`, `range`, …)
 
 - Types split between linear states and parameters
 
@@ -242,17 +249,20 @@ class: middle, title-slide, hide-count
 
 **[Lambda]**
 
-- Quipper programs can be represented as lambda terms.
-- (Example: the bell00 program from before)
-- We took a simplified fragment of it with only the relevant operations,
-  and disallowing explicit recursion due to our target language.
+- Quipper programs can be described as lambda terms.
+  For example, here we have the bell program from before.
+- We defined a simplified fragment of it with only the relevant operations,
+- but more importantly, we disallow explicit recursion
+  since the SZX diagrams cannot represent potentially non-terminating operations.
+- In it's place, we include a number of list-manipulation primitives such as folding and mapping.
 
 **[Terms]**
-- The simplified types are divided between states
-  (lists and tuples of qubits) and parameters (numbers).
-- Only Nats as parameters
-- A quantum circuit is a map between states, and any parameter needs to have been instantiated before.
-- States must be used linearly, we want no discarding nor cloning.
+
+- Furthermore, the simplified types are divided between states
+  (lists and tuples of qubits) and parameters (which are only natural numbers).
+- In this system, a quantum program is a family of quantum state operations,
+  potentially indexed by any number of parameters.
+- Elements with a state type must be used **linearly**, as we want no discarding nor cloning.
 
 ---
 
@@ -291,19 +301,37 @@ class: middle, title-slide, hide-count
 
 ???
 
-**[Automatization]**
+**[Translation]**
 
-- From quipper, we have defined a translation into SZX
-- Recursively on the derivation of the type judgements
-- Separate state context and parameter context
+- Now, having both sides of the equation, we can define the translation procedure
+  from the Proto-Quipper-D fragment into SZX diagrams.
+- We define it over the type judgements,
+  were we have a term given some type (an state type in this case),
+- under a state context and a parameter context.
+- From it we produce a family of diagrams indexed by the parameters
+- and describing a diagram with the state context as input and the type as output.
 
 **[Types]**
 
-- Diagrams are compact closed, functions are equivalent to products
+- Since we want the wires to carry state values, we must describe a translation
+  from the state types into a number of qubits.
+- So for a list of qubits we take the length and from a product the sum.
+- As diagrams are compact closed, a function between qubit states to having a product,
+  so we also translate it as a sum.
 
+**[Parameters]**
+- When we translate a a dependent function,
+  we take those parameters and use them as indexes of the family.
+- The diagram may then have mathematical expressions in the labels
+  that will be evaluated into numbers once we specialize it.
+- It's important to note, that parameters **cannot change the structure**
+  of the diagrams, only the labels.
+
+<!--
 **[Notation]**
 
 - I will ignore the translation brackets most of the time
+-->
 
 ---
 
@@ -351,9 +379,11 @@ class: middle, title-slide, hide-count
 
 **[Lambda terms]**
 
-- Lambda terms on states are translated as diagrams
-- Diagrams are flexible, lambda is moving the variable to the context
-- Application is connecting the appropriate wires
+- Translating a lambda term for states is simply taking the
+  bound variable from the context of the internal term,
+- and connecting it back into the output type.
+- An application is then splitting that function type and connecting
+  the input to the input term and the output to the output of the diagram.
 
 ---
 
@@ -420,10 +450,11 @@ class: middle, title-slide, hide-count
 
 ???
 
-**[Instantiation]**
+**[Parameter controlled flow]**
 
-When we instantiate the diagram family some of the wires end up having size
-zero, depending on the value of the parameters.
+- The fragment has two terms that let parameters control the flow of the program.
+
+- First we have the for construction, which takes a list of integers 
 
 ---
 
@@ -584,10 +615,6 @@ class: inverse, noheader
   \\(n,k \mapsto \\)
   ![:img 80%](img/tikz/qft-applycrot.svg)
 ]
-
-![:vspace 2em]()
-
-.font70[*Omitting the ifz translation]
 
 ]
 
