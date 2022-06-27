@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (7) at (-0.5, -0.25) {};
+		\node [style=none] (26) at (-0.5, -1.75) {};
+		\node [style=none] (35) at (1.5, -0.25) {};
+		\node [style=none] (36) at (1.5, -1.75) {};
+		\node [style=none] (37) at (0.5, -1.25) {$n$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (7.center) to (35.center);
+		\draw [style=bold edge] (26.center) to (36.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

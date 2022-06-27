@@ -31,7 +31,7 @@ class: middle, title-slide, hide-count
 # Quantum programs and circuits
 
 .padded[
-- Proto-Quipper-D is a language for describing quantum programs
+- Proto-Quipper-D [Fu et al. 2021] is a language for describing quantum programs
 
   ```haskell
   bell00 : ! (Unit -> Qubit * Qubit)
@@ -42,7 +42,7 @@ class: middle, title-slide, hide-count
       in CNot y x'
   ```
 
-- Compiled down to circuits of gates
+- Compiled down to quantum circuits
   .center[
   ![:img 40%](examples/bell.svg)
   ]
@@ -125,41 +125,38 @@ class: middle, title-slide, hide-count
 
 ---
 
-# The ZX calculus
+# A low-level intermediate language
 
 .padded[
-- Alternative representation of quantum circuits
-  ![:vspace .5em]
+- First candidate: the ZX calculus
 
   .center[
-  ![:img 40%](examples/bell.svg)
+  `bell00`
+  ![:hspace 1em]
   →
   ![:hspace 1em]
   ![:img 20%](img/tikz/bell-diag.svg)
-  ![:hspace 6em]
+  ![:hspace 1em]
+  →
+  <img src="examples/bell.svg" style="width: 40%; margin-left:-2em">
   ]
 
-  ![:vspace .5em]
+- May be used as an optimization step, or for verification of program rewritings 
 
-- Only topology matters
+![:vspace 1em]
 
-<!-- - Corresponds to a compact closed category -->
+![:hspace .4em]❗ Is still restricted to non-generic operations.
 
-- Formal rewrite system
+![:hspace .4em]❗ The compiled diagram has the same size complexity as the quantum circuit.
 
-- Useful for optimization, simulation, and more
 ]
 
 ???
 
 **[ZX]**
 
-- To that end we use the ZX-calculus, which is a formal graphical language
-- that provides more granular representation of quantum operations than the circuits.
-- **In contrast** to the circuits, we only care about the topology of the diagrams
-  and not about the position of the nodes.
-- As such, we may think of the diagrams as undirected open graphs with three kinds of nodes,
-  and some phase labels.
+- A first candidate may be to use the ZX-calculus, since it 
+- provides a more granular representation of quantum operations than the circuits.
 - This calculus has been succesfully used in optimization and verification tecniques,
 - as its formal rewrite system lets us define formally prove equivalenes between diagrams.
 
@@ -170,18 +167,24 @@ class: middle, title-slide, hide-count
 
 ---
 
-# The SZX extension
+# The SZX calculus
 
 .padded[
+- The Scalable ZX extension [Carette et al. 2019] can encode multi-qubit wires
+
 - Introduces multi-qubit wires (in bold) and gatherer/splitter nodes
   .center[
-  ![:img 20%](img/tikz/gather.svg)
+  ![:img 27%](img/tikz/gather-id.svg)
+  \\(\quad = \quad\\)
+  ![:img 8%](img/tikz/gather-id-2.svg)
   ]
 
-- Can encode parallel and iterative operations
+- Can encode parallel and (bounded) iterative operations
   .center[
-  `CnotN` → \\(\qquad n \mapsto\ \\) ![:img 40%](img/tikz/cnots-szx.svg)
+  `cnotN` → \\(\qquad n \mapsto\ \\) ![:img 27%](img/tikz/cnots-szx.svg)
   ]
+
+- Directly translatable to ZX
 ]
 
 ???
@@ -207,6 +210,10 @@ class: middle, title-slide, hide-count
   where it is used in a CNOT with the first control qubit.
 - We then take that target qubit and loop it back, putting it now as the second element of the list.
 - We repeat this until we have applied all the CNOTS, and then connect the target to the output.
+
+**[Still ZX]**
+
+- Can always go down to ZX
 
 **[cue Fragment]**
 - We can now use this idea to formalize a compilation procedure,
@@ -392,7 +399,7 @@ class: middle, title-slide, hide-count
 
 .padded[
 
-- Instantiate families with lists of parameters
+- We can instantiate families with lists of parameters
 
 .font80.center[
 
@@ -418,7 +425,7 @@ class: middle, title-slide, hide-count
 
 ![:vspace 1em]
 
-- Parameter-dependent branching
+- Parameter-dependent branching maps non-taken path to zero-wires
 
 .font80.center[
 
@@ -535,10 +542,32 @@ class: middle, title-slide, hide-count
 ]
 
 ---
-name: last
 class: inverse, noheader
+name: last
 
-![:vspace 10em]()
+.padded[
+
+.bold[Closing remarks:]
+
+![:vspace .5em]()
+
+- Encoded a non-trivial restricted fragment of Proto-Quipper-D programs into the SZX calculus
+
+![:vspace .5em]()
+
+- The translated diagram compactly encode generic programs
+
+![:vspace .5em]()
+
+- The concrete diagrams can be directly translated into ZX, then circuits
+
+]
+
+???
+
+----
+
+--
 
 .center.bold[
   Thanks!
@@ -566,93 +595,3 @@ class: inverse, noheader
 ![:img 70%](img/tikz/translation-accumap.svg)
 
 ]
-
----
-
-# Example: QFT translation (1)
-
-.padded[
-
-\\(
-\begin{aligned}
-  \text{crot}&: (n:\nat)\to (\qubit\otimes\qubit)\multimap (\qubit\otimes\qubit)\\\\
-\end{aligned}
-\\)
-
-![:vspace 2em]()
-
-.center[
-  \\(n \mapsto \\)
-  ![:img 50%](img/tikz/qft-crot.svg)
-]
-
-]
-
-???
-
-**[C-Rot]**
-
-- First, the crot term takes a pair of qubits a rotation gate over them
-- This is parametrized with an int for the rotation angle
-- We have a straightforward translation of this into SZX
-- Splitting the pair, applying the rotation, and bundling them again
-
----
-
-# Example: QFT translation (2)
-
-.padded[
-
-\\(
-\begin{aligned}
-  \text{apply\_crot}&: (n:\nat) \to (k:\nat) \to \vec{\qubit}{n} \multimap \vec{\qubit}{n} \\\\
-\end{aligned}
-\\)
-
-![:vspace 2em]()
-
-.center[
-  \\(n,k \mapsto \\)
-  ![:img 80%](img/tikz/qft-applycrot.svg)
-]
-
-]
-
-???
-
-**[apply crot]**
-
-- The apply_crot uses the previous term
-- Does an operation similar to the CNOTs function we saw before on a portion of the list
-- I don't show the check that n>k but it's just a bypass
-
----
-# Example: QFT translation (3)
-
-.padded[
-
-\\(
-\begin{aligned}
-  \text{qft} &: (n:\nat) \to \vec{\ \qubit}{n}\multimap\vec{\qubit}{n} \\\\
-\end{aligned}
-\\)
-
-![:vspace 2em]()
-
-.center[
-  \\(n \mapsto \\)
-  ![:img 70%](img/tikz/qft-main.svg)
-]
-
-]
-
-???
-
-**[qft]**
-
-- Finally, qft applies the previous term n times, varying the value of k
-- If we compose these translations, we obtain a compact diagram
-  that represents the QFT operation over any arbitrary number of qubits
-- No need for quadratic number of gates, we have a constant size encoding
-- In general, linear for the size of the program and independent of the parameters
-

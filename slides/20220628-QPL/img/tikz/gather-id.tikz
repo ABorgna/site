@@ -1,0 +1,22 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (7) at (-4, -0.25) {};
+		\node [style=gather] (25) at (-1.75, -1) {};
+		\node [style=none] (26) at (-4, -1.75) {};
+		\node [style=none] (28) at (-2.75, -1.75) {$n$};
+		\node [style=none] (30) at (-0.5, -0.5) {$n+1$};
+		\node [style=none] (33) at (-2.75, -0.25) {$1$};
+		\node [style=split] (34) at (0.75, -1) {};
+		\node [style=none] (35) at (3, -0.25) {};
+		\node [style=none] (36) at (3, -1.75) {};
+		\node [style=none] (37) at (1.25, -1.75) {$n$};
+		\node [style=none] (38) at (1.25, -0.25) {$1$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [in=165, out=0] (7.center) to (25.center);
+		\draw [style=bold edge, in=0, out=-165] (25.center) to (26.center);
+		\draw [style=bold edge] (25.center) to (34.center);
+		\draw [style=bold edge, in=180, out=-15] (34.center) to (36.center);
+		\draw [in=-180, out=15] (34.center) to (35.center);
+	\end{pgfonlayer}
+\end{tikzpicture}
