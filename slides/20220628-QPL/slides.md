@@ -221,7 +221,7 @@ class: middle, title-slide, hide-count
 
 ---
 
-# Quipper-D calculus
+# A bounded Quipper-D fragment
 
 .padded[
 - Specification à la lambda
@@ -347,8 +347,6 @@ class: middle, title-slide, hide-count
 .padded[
 - State operations are represented diagrammatically
 
-![:vspace 1em]
-
 .font70.center[
 
 \\(
@@ -363,8 +361,6 @@ class: middle, title-slide, hide-count
 \\(\quad |\Phi| \mapsto \\)
 ![:img 25%](img/tikz/translation-lambda.svg)
 
-![:vspace 1em]
-
 \\(
   \begin{prooftree}
     \AxiomC{$\Gamma,\Phi_1 \vdash M:{S_1} \multimap {S_2}$}
@@ -377,6 +373,26 @@ class: middle, title-slide, hide-count
 →
 \\(\quad |\Phi_1|, |\Phi_2| \mapsto \\)
 ![:img 25%](img/tikz/translation-apply.svg)
+
+]
+
+- Parameter operations are encoded as mathematical expressions
+
+
+.font70.center[
+
+\\(
+  \begin{prooftree}
+    \AxiomC{$\Gamma,\Phi_1 \vdash M:(n:\nat) \to B[n]$}
+    \AxiomC{$\Phi_2 \vdash N:\nat$}
+  \RightLabel{ $\to_e$}
+  \BinaryInfC{$\Gamma, \Phi_1, \Phi_2 \vdash \mathbf{M@N} : B[N/n]$}
+  \end{prooftree}
+  \quad
+\\)
+→
+\\(\quad |\Phi_1|, |\Phi_2| \mapsto \\)
+![:img 25%](img/tikz/translation-apply-param.svg)
 
 ]
 
