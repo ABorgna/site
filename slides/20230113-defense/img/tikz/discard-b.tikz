@@ -1,0 +1,9 @@
+\begin{tikzpicture}
+    \begin{pgfonlayer}{nodelayer}
+        \node [style=ground, rotate=-90] (1) at (0, 0) {$\ground$};
+        \node [style=none] (3) at (1, 0) {};
+    \end{pgfonlayer}
+    \begin{pgfonlayer}{edgelayer}
+        \draw (1.center) to (3.center);
+    \end{pgfonlayer}
+\end{tikzpicture}

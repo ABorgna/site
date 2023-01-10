@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (-11, 1) {};
+		\node [style=ground, rotate=180] (gnd0) at (-11, 1.75) {$\ground$};
+		\node [style=Z phase dot] (1) at (-8, 1) {$j\pi$};
+		\node [style=Z phase dot] (a) at (-14, 0) {$\alpha_i$};
+		\node [style=Z phase dot] (b) at (-9.5, -1.25) {$\beta_j$};
+		\node [style=Z phase dot] (c) at (-5, 0) {$\gamma_k$};
+		\node [style=none] (aP) at (-15, 0) {};
+		\node [style=none] (bP) at (-9.5, -2.25) {};
+		\node [style=none] (cP) at (-4, 0) {};
+		\node [style=bang box] (aM) at (-14, 0) {};
+		\node [style=bang box] (bM) at (-9.5, -1.25) {};
+		\node [style=bang box] (cM) at (-5, 0) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (gnd0.center);
+		\draw (a) to (aP.center);
+		\draw (b) to (bP.center);
+		\draw (c) to (cP.center);
+		\draw [style=hadamard edge] (a) to (0);
+		\draw [style=hadamard edge] (0) to (b);
+		\draw [style=hadamard edge] (0) to (1);
+		\draw [style=hadamard edge] (1) to (b);
+		\draw [style=hadamard edge] (1) to (c);
+	\end{pgfonlayer}
+\end{tikzpicture}

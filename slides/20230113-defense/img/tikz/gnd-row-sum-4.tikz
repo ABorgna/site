@@ -1,0 +1,30 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (-6.5, 0.75) {};
+		\node [style=ground, rotate=180] (gnd) at (-6.5, 1.5) {$\ground$};
+		\node [style=Z phase dot] (2) at (-8, -0.75) {$\alpha_i$};
+		\node [style=Z phase dot] (4) at (-2, -0.75) {$\gamma_k$};
+		\node [style=none] (5) at (-8, -1.75) {};
+		\node [style=none] (7) at (-2, -1.75) {};
+		\node [style=Z phase dot] (35) at (-5, -0.75) {$\beta_j$};
+		\node [style=none] (36) at (-5, -1.75) {};
+		\node [style=none] (48) at (-7.25, 0.75) {$u$};
+		\node [style=Z dot] (49) at (-3.5, 0.75) {};
+		\node [style=ground, rotate=180] (50) at (-3.5, 1.5) {$\ground$};
+		\node [style=none] (51) at (-2.75, 0.75) {$v$};
+		\node [style=bang box] (52) at (-8, -0.75) {};
+		\node [style=bang box] (54) at (-2, -0.75) {};
+		\node [style=bang box] (55) at (-5, -0.75) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (gnd.center);
+		\draw (5.center) to (2);
+		\draw (7.center) to (4);
+		\draw [style=hadamard edge] (2) to (0);
+		\draw (36.center) to (35);
+		\draw [style=hadamard edge] (0) to (35);
+		\draw (49) to (50.center);
+		\draw [style=hadamard edge] (49) to (4);
+		\draw [style=hadamard edge] (2) to (49);
+	\end{pgfonlayer}
+\end{tikzpicture}

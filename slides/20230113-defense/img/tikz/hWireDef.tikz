@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (-2, 0) {};
+		\node [style=Z dot] (5) at (2, 0) {};
+		\node [style=none] (3) at (-3.25, 0) {};
+		\node [style=none] (4) at (3.25, 0) {};
+		\node [style=Z phase dot] (9) at (-1, 0) {$\frac\pi 2$};
+		\node [style=Z phase dot] (10) at (1, 0) {$\frac\pi 2$};
+		\node [style=X phase dot] (11) at (0, 0) {$\frac\pi 2$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (3.center) to (0);
+		\draw (5) to (4.center);
+		\draw (0) to (9);
+		\draw [in=180, out=0] (9) to (11);
+		\draw (11) to (10);
+		\draw (10) to (5);
+	\end{pgfonlayer}
+\end{tikzpicture}

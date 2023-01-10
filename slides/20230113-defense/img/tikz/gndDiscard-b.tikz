@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (5) at (1.5, 0) {};
+		\node [style=ground, rotate=-90] (gnd5) at (0, 0) {$\ground$};
+		\node [style=none] (1) at (3.25, 1) {};
+		\node [style=none] (4) at (3.25, -1) {};
+		\node [style=none, rotate=90] (8) at (3, 0) {...};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [in=0, out=180] (5) to (gnd5.center);
+		\draw [in=180, out=-39, looseness=0.75] (5) to (4.center);
+		\draw [in=180, out=39, looseness=0.75] (5) to (1.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

@@ -1,0 +1,23 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (-2, 1.5) {};
+		\node [style=none] (2) at (-2, -1) {};
+		\node [style=box] (11) at (-1, 1.5) {$T$};
+		\node [style=small black dot] (12) at (0, 1.5) {};
+		\node [style=cnot] (13) at (0, -1) {$\oplus$};
+		\node [style=box] (14) at (1, 1.5) {$H$};
+		\node [style=none] (17) at (2, 1.5) {};
+		\node [style=none] (18) at (2, -1) {};
+		\node [style=box] (19) at (-1, -1) {$X$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (11) to (12);
+		\draw (12) to (13);
+		\draw (12) to (14);
+		\draw (13) to (18.center);
+		\draw (14) to (17.center);
+		\draw (19) to (13);
+		\draw (1.center) to (11);
+		\draw (2.center) to (19);
+	\end{pgfonlayer}
+\end{tikzpicture}

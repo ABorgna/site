@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (3) at (12.5, 0) {};
+		\node [style=none] (7) at (-8.5, 0) {};
+		\node [style=gather, rotate=180] (24) at (-7, 0) {};
+		\node [style=gather] (25) at (11.25, 0) {};
+		\node [style=none] (29) at (12, 0.25) {$\scriptstyle{n}$};
+		\node [style=none] (41) at (-7.75, 0.25) {$\scriptstyle{n}$};
+		\node [style=none] (42) at (-5, 1.5) {};
+		\node [style=none] (43) at (9.75, 1.5) {};
+		\node [style=none] (44) at (1.5, 1.75) {$\scriptstyle{k}$};
+		\node [style=gather, rotate=180] (45) at (-5, -1) {};
+		\node [style=none] (46) at (-6.25, -1.25) {$\scriptstyle{n-k}$};
+		\node [style=hadamard] (47) at (-3.75, -0.75) {};
+		\node [style=gather] (48) at (-2, -0.5) {};
+		\node [style=none] (49) at (-3.25, 0) {};
+		\node [style=none] (50) at (-2, 0.5) {};
+		\node [style=box] (51) at (2.5, -1.75) {$\substack{\text{crot}(m)\\\scriptscriptstyle{m \in 2..(n-k+1)}}$};
+		\node [style=none] (52) at (1.25, -2) {};
+		\node [style=none] (53) at (3.25, -2) {};
+		\node [style=gather, rotate=180] (54) at (7, -2) {};
+		\node [style=none] (55) at (7.75, -0.5) {};
+		\node [style=none] (56) at (6.25, 0.5) {};
+		\node [style=none] (57) at (1.25, -1.5) {};
+		\node [style=gather] (58) at (9.75, -1.75) {};
+		\node [style=none] (59) at (3.25, -1.5) {};
+		\node [style=none] (60) at (7, -1.5) {};
+		\node [style=none] (61) at (2, 0.75) {$\scriptstyle{n-k-2}$};
+		\node [style=none] (62) at (-1.75, -1.75) {$\scriptstyle{n-k-1}$};
+		\node [style=none] (63) at (0.25, -0.5) {$\scriptstyle{n-k-1}$};
+		\node [style=none] (64) at (5.5, -1.25) {$\scriptstyle{n-k-1}$};
+		\node [style=none] (65) at (5.5, -2.25) {$\scriptstyle{n-k-1}$};
+		\node [style=none] (66) at (11.5, -1.25) {$\scriptstyle{n-k}$};
+		\node [style=none] (67) at (-3, -1.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=bold edge] (25) to (3.center);
+		\draw [style=bold edge] (7.center) to (24);
+		\draw [style=bold edge, in=180, out=15, looseness=0.75] (24) to (42.center);
+		\draw [style=bold edge] (42.center) to (43.center);
+		\draw [style=bold edge, in=150, out=0, looseness=0.75] (43.center) to (25);
+		\draw [style=bold edge, in=-180, out=-15] (24) to (45);
+		\draw [in=180, out=15] (45) to (47);
+		\draw [in=150, out=0, looseness=1.25] (47) to (48);
+		\draw [style=bold edge, in=-165, out=-90] (49.center) to (48);
+		\draw [style=bold edge, in=-180, out=90, looseness=0.75] (49.center) to (50.center);
+		\draw [style=bold edge, in=-90, out=30] (54) to (55.center);
+		\draw [style=bold edge] (53.center) to (54);
+		\draw [style=bold edge, in=90, out=0, looseness=0.75] (56.center) to (55.center);
+		\draw [style=bold edge] (50.center) to (56.center);
+		\draw [style=bold edge] (59.center) to (60.center);
+		\draw [style=bold edge, in=-150, out=0] (60.center) to (58);
+		\draw [style=bold edge, in=225, out=0] (58) to (25);
+		\draw [style=bold edge, in=-180, out=0] (48) to (52.center);
+		\draw [style=bold edge, in=180, out=-15] (45) to (67.center);
+		\draw [style=bold edge] (67.center) to (57.center);
+		\draw [in=150, out=-30, looseness=1.25] (54) to (58);
+	\end{pgfonlayer}
+\end{tikzpicture}

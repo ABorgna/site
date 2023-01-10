@@ -1,0 +1,37 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (17) at (5.5, 0.75) {};
+		\node [style=none] (18) at (5.5, -0.75) {};
+		\node [style=none] (21) at (-5, 0.5) {};
+		\node [style=none] (22) at (-5, -0.5) {};
+		\node [style=cnot] (23) at (4.5, 0.75) {$\oplus$};
+		\node [style=small black dot] (24) at (4.5, -0.75) {};
+		\node [style=none] (25) at (-2.5, 0.75) {};
+		\node [style=none] (27) at (0, 1.5) {};
+		\node [style=none] (28) at (0, -1.5) {};
+		\node [style=box] (30) at (3.5, -0.75) {$H$};
+		\node [style=small black dot] (31) at (2.5, 0.75) {};
+		\node [style=small black dot] (32) at (2.5, -0.75) {};
+		\node [style=box] (35) at (1.5, 0.75) {$H$};
+		\node [style=box] (36) at (0, 0.75) {$Z$};
+		\node [style=box] (37) at (-1.5, 0.75) {$H$};
+		\node [style=none] (38) at (0.65, -0.75) {\textbf{\textbar}};
+		\node [style=none] (39) at (0.25, -0.75) {$0$};
+		\node [style=box] (40) at (1.5, -0.75) {$H$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (23) to (24);
+		\draw (23) to (17.center);
+		\draw (24) to (18.center);
+		\draw (30) to (24);
+		\draw (32) to (30);
+		\draw (31) to (23);
+		\draw (31) to (32);
+		\draw (36) to (35);
+		\draw (35) to (31);
+		\draw (25.center) to (37);
+		\draw (37) to (36);
+		\draw (38.center) to (40);
+		\draw (40) to (32);
+	\end{pgfonlayer}
+\end{tikzpicture}
