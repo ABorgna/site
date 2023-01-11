@@ -52,6 +52,10 @@ a {
   font-family: 'Fira Sans SemiBold', sans-serif;
 }
 
+.align-right {
+  text-align: right;
+}
+
 .remark-slide-content.noheader {
   border: none;
 }

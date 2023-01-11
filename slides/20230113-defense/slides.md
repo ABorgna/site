@@ -14,6 +14,10 @@ class: middle, title-slide, hide-count
 
 ## Part 0: Of qubits and quantum machines
 
+???
+
+**[Background]**
+Before presenting our results, lets talk a little bit about quantum computing.
 
 ---
 
@@ -24,6 +28,29 @@ class: middle, title-slide, hide-count
 ]
 
 ???
+
+**[Model]**
+Before talking about compilers we need a clear idea of the
+**model of computation** we are working with.
+
+**[Quantum processor]**
+The more common architecture for quantum computers assumes that we have a
+classical processor, running a classical program that generates some series of
+operations to run in a quantum co-processor.
+
+**[Results]**
+These are concrete operations that modify some internal state, and may produce
+classical bits as results that get sent back to the classical computer.
+
+**[Qubits]**
+What makes this quantum co-processor special is this internal state, which is
+formed by the quantum equivalent of a bit, called qubit, which show some
+behaviour that cannot be efficiently simulated by a classical computer.
+
+**[Algorithmic implications]**
+Today I won't talk about the inner workings and the algorithmic implications of
+this quantum state, but I will focus on the ways we interact with this quantum
+co-processor.
 
 ---
 count: false
@@ -36,23 +63,65 @@ count: false
 
 ???
 
+**[Look closer, q circuits]**
+If we look a bit closer at how we define the operations that we run, we can say
+that the classical program generates batches of operations described as a quantum
+circuit, which then gets sent to the quantum computer.
+
+---
+# Hybrid Quantum circuits
+
+![:vspace .5em]()
+
+.center.padded[
+  ![:img 50%](img/tikz/superdenseCoding-circuit.svg)
+]
+
+.padded[
+- Read from left to right
+
+- Single horizontal wires for qubits, double wires for bits
+
+- Describe quantum gates to apply to qubits
+
+- Contains classically controlled quantum operators
+]
+
+???
+
+**[Left to right]**
+
+**[Qubit wires]**
+
+**[Gates]**
+Defined by the quantum architecture. Multi-qubit gates
+
+**[Classical control]**
+
 ---
 
-# Quantum circuits
+# Quantum circuit generators
 
 .padded[
 - Qubits are unitary vectors
-  \\(\qquad \alpha \ket{0} + \beta \ket{1} \in \C^2\\)
+  ![:hspace 6em]()
+  \\(\alpha \ket{0} + \beta \ket{1} \in \C^2\\)
+
+![:vspace .5em]()
 
 - Unitary (invertible) operations
-  ![:hspace 4em]()
+  ![:hspace 4.1em]()
   ![:img 15%](img/tikz/u.svg)
   \\(\qquad U \in \C^{2^n \times 2^n}\\)
 
+![:vspace .5em]()
+
 - No cloning
-  ![:hspace 4.35em]()
+  ![:hspace 4.3em]()
   \\(\not\exists U \; s.t. \qquad\\)
   ![:img 25%](img/tikz/clone.svg)
+
+![:vspace .5em]()
 
 - Destructive measurement
   ![:hspace 3.75em]()
@@ -63,12 +132,8 @@ count: false
     \ket{1}
     \end{cases}
   \\)
-]
 
 ]
-
-
-
 
 
 
@@ -113,20 +178,35 @@ count: false
 ]
 
 ---
-layout: true
+count: false
 
-# Translation
+# The lifecycle of quantum programs
 
-.padded[
-- Direct translation to ZX diagrams
+.center[
+![:img 90%](img/overview-zxGnd.svg)
 ]
 
-![:vspace .5em]()
+---
+layout: true
+
+# Encoding circuits in the ZX calculus
+
+.padded[
+- Unitaries can be encoded as ZX diagrams
+]
 
 .center.font120[
-  ![:img 20%](img/tikz/pureZX-circ.svg)
-  \\(\; \Rightarrow\\)
-  <span style="width: 43%; display: inline-block">{{content}}</span>
+  ![:img 15%](img/tikz/pureZX-circ.svg)
+  \\(\quad \Rightarrow\\)
+  <span style="width: 35%; display: inline-block">{{content}}</span>
+]
+
+.padded[
+- Fine grained encoding of linear maps
+
+- Formal set of rewriting rules
+
+- Only topology matters
 ]
 
 ???
@@ -169,27 +249,27 @@ changing the interpretation of the graph.
 
 ---
 
-![:scaleSVG 5.325](img/tikz/pureZX-diag-0.svg)
+![:scaleSVG 4](img/tikz/pureZX-diag-0.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-0-0.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-0-0.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-1.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-1.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-2.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-2.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-3.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-3.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-4.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-4.svg)
 
 ???
 
@@ -205,19 +285,19 @@ layout: false
 
 .center.font80[
   ![:scaleSVG 2](img/tikz/overview-pure-circ.svg)
-  ![:hspace 4em]()
+  ![:hspace 5em]()
   \\(\qquad \xrightarrow{Translate}\quad\\)
-  ![:hspace 2em]()
+  ![:hspace 3em]()
   ![:scaleSVG 2](img/tikz/overview-pure-graphlike.svg)
 
-  ![:vspace 3em]()
+  ![:vspace 5em]()
 
   \\(\; \xrightarrow{Optimize}\quad\\)
-  ![:hspace 2em]()
+  ![:hspace 3em]()
   ![:scaleSVG 2](img/tikz/overview-pure-optimized.svg)
-  ![:hspace 2em]()
+  ![:hspace 3em]()
   \\(\quad \xrightarrow{Extract}\quad\\)
-  ![:hspace 4em]()
+  ![:hspace 5em]()
   ![:scaleSVG 2](img/tikz/overview-pure-extracted.svg)
 ]
 
@@ -244,14 +324,16 @@ layout: true
 # The \\(\zxGnd\\)-calculus
 
 .padded[
-  - \\(\zxGnd\\) adds a discarding *ground generator*
+- \\(\zxGnd\\) adds a discarding *ground generator*
 ]
 
 .center.padded[
   {{content}}
 ]
 
-![:vspace 3em]()
+.padded[
+- New rules to discard other generators
+]
 
 .center.font80[
   ![:scaleSVG 3](img/tikz/discard-a.svg)
@@ -895,7 +977,7 @@ class: middle, title-slide, hide-count
 # The lifecycle of quantum programs
 
 .center[
-![:img 90%](img/overview-zx.svg)
+![:img 90%](img/overview-zxGnd.svg)
 ]
 
 ---
@@ -931,6 +1013,8 @@ count: false
           x' = H x
       in CNot y x'
   ```
+
+![:vspace .5em]
 
 - Compiled down to quantum circuits
   .center[
@@ -1031,6 +1115,8 @@ count: false
   <img src="examples/bell.svg" style="width: 40%; margin-left:-2em">
   ]
 
+![:vspace .5em]
+
 - May be used as an optimization step, or for verification of program rewritings 
 
 ![:vspace 1em]
@@ -1116,7 +1202,7 @@ count: false
 .padded[
 - Specification à la lambda
 
-  .font80.center[
+  .center[
   \\(
     \begin{aligned}
     \text{bell00} &: \text{Unit} \multimap \qubit * \qubit \\\\
@@ -1132,7 +1218,7 @@ count: false
 
 - Types split between linear states and parameters
 
-  .center.font80[
+  .center[
   Types \\(A := S \;|\; P \;|\; (n : \nat) \to A[n]\\)
 
   States \\(S := \text{Qubit} \;|\; \text{Bit} \;|\; \text{Unit} \;|\; S_1 \otimes S_2 \;|\; S_1 \multimap S_2 \;|\; \text{Vec } (n: \nat)\ S \\)
@@ -1167,7 +1253,7 @@ count: false
 
 .padded[
 - Translate type judgements to families of diagrams
-  .font90.center[
+  .center[
 
   \\(\Gamma, \Phi \vdash M : S \quad \\)
   →
@@ -1177,7 +1263,7 @@ count: false
 
 - State types translate to number of qubits
 
-  .center.font90[
+  .center[
   \\(\trans{\mathsf{Qubit}} = 1\\)
 
   \\(\trans{\mathsf{Vec}\ n\ A} = \trans{A} \times n \\)
@@ -1186,7 +1272,7 @@ count: false
   ]
 
 - Parameters create generic diagrams
-  .font90.center[
+  .center[
 
   \\(\Gamma, \Phi \vdash M : (n:\nat) \to S[n] \quad \\)
   →
@@ -1239,7 +1325,7 @@ count: false
 
 ![:vspace 1em]
 
-.font70.center[
+.center[
 
 \\(
   \begin{prooftree}
@@ -1291,7 +1377,7 @@ count: false
 
 - We can instantiate families with lists of parameters
 
-.font80.center[
+.center[
 
 ![:vspace .5em]
 
@@ -1317,7 +1403,7 @@ count: false
 
 - Parameter-dependent branching maps non-taken path to zero-wires
 
-.font80.center[
+.font90.center[
 
 \\(
   \begin{prooftree}
@@ -1335,7 +1421,7 @@ count: false
 
 ![:vspace .5em]
 
-.font80.align-right[
+.align-right[
 
   with \\(l = \eval{L}(|\Phi|)\\)
 
@@ -1361,7 +1447,7 @@ count: false
 
 - Encoded as a lambda term
   
-  .font70[
+  .font90[
 
     \\(
     \definecolor{grey}{RGB}{0,0,0}
@@ -1376,7 +1462,7 @@ count: false
   
   ]
 
-  .font70[
+  .font90[
       
     \\(
     \begin{aligned}
@@ -1397,7 +1483,7 @@ count: false
   
   ]
 
-  .font70[
+  .font90[
     
     \\(
     \begin{aligned}
@@ -1434,7 +1520,7 @@ count: false
 
 - Encoded as a lambda term
   
-  .font70[
+  .font90[
 
     \\(
     \definecolor{grey}{RGB}{185,185,185}
@@ -1449,7 +1535,7 @@ count: false
   
   ]
 
-  .font70[
+  .font90[
       
     \\(
     \begin{aligned}
@@ -1470,7 +1556,7 @@ count: false
   
   ]
 
-  .font70[
+  .font90[
     
     \\(
     \begin{aligned}
@@ -1495,7 +1581,11 @@ count: false
 
 - crot: ![:hspace 5.4em]() \\(n \mapsto\\) ![:img 35%](img/tikz/qft-crot.svg)
 
+![:vspace .5em]()
+
 - apply_crot: ![:hspace 1.25em]() \\(n,k \mapsto\\) ![:img 70%](img/tikz/qft-applycrot.svg)
+
+![:vspace .5em]()
 
 - qft: ![:hspace 5.75em]() \\(n \mapsto\\) ![:img 50%](img/tikz/qft-main.svg)
 
@@ -1527,13 +1617,9 @@ name: last
 
 .padded[
 
-.bold[Closing remarks:]
-
 .center[
-![:img 50%](img/overview-szx-dark.svg)
+![:img 70%](img/overview-szx-dark.svg)
 ]
-
-![:vspace .5em]()
 
 - ?
 
@@ -1548,6 +1634,14 @@ name: last
 .center.bold[
   Thanks!
 ]
+
+---
+
+# Extra: ZX rewriting rules
+
+---
+
+# Extra: Hybrid optimization benchmarks
 
 ---
 
@@ -1571,3 +1665,7 @@ name: last
 ![:img 70%](img/tikz/translation-accumap.svg)
 
 ]
+
+---
+
+# Extra: Modified \\(\lambda_D\\) definition
