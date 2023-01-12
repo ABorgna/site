@@ -1,14 +1,14 @@
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=none] (1) at (3, -0.5) {};
+		\node [style=none] (1) at (2.5, -0.5) {};
 		\node [style=box] (3) at (-0.75, 0) {$U(2)$};
 		\node [style=none] (7) at (2, 1.25) {$\scriptstyle{2}$};
 		\node [style=box] (9) at (-0.75, 1.25) {\texttt{bell00}};
 		\node [style=split] (10) at (1.5, 0) {};
 		\node [style=none] (11) at (1.25, 1.25) {};
-		\node [style=none] (12) at (3.25, -0.25) {$\scriptstyle{2}$};
+		\node [style=none] (12) at (2.75, -0.25) {$\scriptstyle{2}$};
 		\node [style=none] (13) at (0.75, 0.25) {$\scriptstyle{4}$};
-		\node [style=none] (14) at (3.5, -0.5) {};
+		\node [style=none] (14) at (3, -0.5) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [style=bold edge] (3) to (10.center);

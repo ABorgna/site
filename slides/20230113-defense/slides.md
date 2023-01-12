@@ -1207,7 +1207,7 @@ count: false
   ```
 ]
 .column.center[
-  ![:img 40%](img/tikz/trans-bell00.svg)
+  ![:hspace 3em]() ![:img 40%](img/tikz/trans-bell00.svg)
 ]
 ]
 
@@ -1221,14 +1221,14 @@ count: false
   ```
 ]
 
-.column.center[
-  \\(n \mapsto\ \\) ![:img 50%](img/tikz/trans-applyU.svg)
+.column[
+  \\(\quad n \mapsto\ \\) ![:img 50%](img/tikz/trans-applyU.svg)
 ]
 ]
 
 .columns[
 .column[
-- Applications connects the corresponding wires
+- Applications connect the corresponding wires
 
   ```haskell
   bell_U : ! Unit -> Vec n Qubit
@@ -1237,7 +1237,7 @@ count: false
 ]
 
 .column.center[
-  ![:img 45%](img/tikz/trans-bellU.svg)
+  ![:hspace 4em]() ![:img 40%](img/tikz/trans-bellU.svg)
 ]
 ]
 
