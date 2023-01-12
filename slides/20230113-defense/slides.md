@@ -227,23 +227,23 @@ changing the interpretation of the graph.
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-0-0.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-0-0.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-1.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-1.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-2.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-2.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-3.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-3.svg)
 
 ---
 count: false
-![:scaleSVG 4](img/tikz/pureZX-diag-4.svg)
+![:scaleSVG 3](img/tikz/pureZX-diag-4.svg)
 
 ???
 
@@ -356,7 +356,9 @@ layout: true
 ![:vspace 2em]()
 
 .padded[
-  - The translated diagram is *weakly graph-like*
+- The translated diagram is *weakly graph-like*
+
+  - Only green spiders and internal Hadamard wires
 ]
 
 ???
@@ -407,7 +409,11 @@ layout: false
 ]![:vspace 2em]()
 
 .padded[
-  - The translated diagram is *~~weakly~~* strictly *graph-like*
+- The translated diagram is *~~weakly~~* strictly *graph-like*
+
+  - Only green spiders and internal Hadamard wires
+
+  - Separated inputs, outputs, and ground spiders
 ]
 
 ???
@@ -635,18 +641,18 @@ but we still have to define some extraction operation to get back a circuit.
 
 ---
 
-![:vspace 54px]()
+![:vspace 94px]()
 ![:scaleSVG 4](img/tikz/optimizationB-0.svg)
 
 ---
 count: false
-![:vspace 54px]()
+![:vspace 94px]()
 ![:scaleSVG 4](img/tikz/optimizationB-1.svg)
 
 ---
 count: false
-![:vspace 54px]()
-![:scaleSVG 5.5](img/tikz/optimizationB-2.svg)
+![:vspace 89px]()
+![:scaleSVG 5.3](img/tikz/optimizationB-2.svg)
 
 ---
 count: false
@@ -982,23 +988,23 @@ count: false
 # The Quipper language family
 
 .padded[
-- **Quipper** is a functional quantum programming language
-  developed by Peter Selinger et al.
+- **Quipper**: scalable functional quantum language embeded in Haskell
 
-- High-level language, with a focus on expressiveness and ease of use
+  - Describes families of circuits using parameter-sized lists
 
-- Has sprouted a family of experimental languages
+![:vspace .5em]
 
-- **Proto-Quiper-D**: formal variation with support for Dependent types [Fu et al. 2021]
+- Formalizations by P. Selinger's group
 
-  - Type system based on Haskell's with linear types
+  - ProtoQuipper : small core, linear type system
 
-  - Proto-Quipper-D has a formal definition as lambda calculi with categorical
-    semantics
+  - ProtoQuipper-M : extended core, linear type system
+
+  - **ProtoQuipper-D** : with dependent types over classical data
 
 ![:vspace .5em]
   
-- In this work, we use just a small fragment of Proto-Quipper-D
+- In this work, we use just a small fragment of Proto-Quipper-D with bounded recursion
 
 ]
 
@@ -1343,15 +1349,17 @@ The wires in U should come from the left, I'm ignoring some complexity here.
 
 .padded[
 
-- qft: ![:hspace 5.75em]() \\(n \mapsto\ \\) ![:hspace 4em]() ![:img 50%](img/tikz/qft-main.svg)
+- Encodable as two embedded bounded loops
 
-![:vspace .5em]()
+  - qft: ![:hspace 5.75em]() \\(n \mapsto\ \\) ![:hspace 4em]() ![:img 50%](img/tikz/qft-main.svg)
 
-- apply_crot: ![:hspace 1.25em]() \\(n,k \mapsto\ \\) ![:img 70%](img/tikz/qft-applycrot.svg)
+  ![:vspace .5em]()
 
-![:vspace .5em]()
+  - apply_crot: ![:hspace 1.25em]() \\(n,k \mapsto\ \\) ![:img 70%](img/tikz/qft-applycrot.svg)
 
-- crot: ![:hspace 5.4em]() \\(n \mapsto\ \\) ![:hspace 10em]() ![:img 25%](img/tikz/qft-crot.svg)
+  ![:vspace .5em]()
+
+  - crot: ![:hspace 5.4em]() \\(n \mapsto\ \\) ![:hspace 10em]() ![:img 25%](img/tikz/qft-crot.svg)
 
 ]
 
