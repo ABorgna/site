@@ -4,6 +4,10 @@ a {
   color:#2B2B2B;
 }
 
+.inverse a {
+  color:#ff5900;
+}
+
 .TODO {
     display: inline;
     font-family: 'Fira Mono';

@@ -1,0 +1,13 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (21) at (3.25, 0) {};
+		\node [style=none] (22) at (-3, 0) {};
+		\node [style=box, inner sep=.5em] (23) at (0, 0) {$\substack{\textstyle{H}\\k \in\ 1..n}$};
+		\node [style=none] (24) at (-2.5, 0.5) {$n$};
+		\node [style=none] (25) at (2.75, 0.5) {$n$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=bold edge] (22.center) to (23);
+		\draw [style=bold edge] (23) to (21.center);
+	\end{pgfonlayer}
+\end{tikzpicture}

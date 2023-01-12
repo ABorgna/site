@@ -6,7 +6,23 @@ class: middle, title-slide, hide-count
 
 .author[Advisors: Simon Perdrix, Benoît Valiron]
 
-.date[9th June 2022]
+.date[13th September 2023]
+
+![:vspace 2em]()
+
+.author.right[
+  ![:img 8%](img/logo/loria.png)
+  ![:hspace 1em]()
+  ![:img 12%](img/logo/universite-de-lorraine.png)
+  ![:hspace 1em]()
+  ![:img 15%](img/logo/logo-lmf-rgb.svg)
+  ![:hspace 1em]()
+  ![:img 13%](img/logo/logo-upsaclay-couleurs.png)
+  ![:hspace 1em]()
+  ![:img 9%](img/logo/logo-inria-rgb.svg)
+  ![:hspace 1em]()
+  ![:img 7%](img/logo/logo-cnrs-rgb.svg)
+]
 
 ---
 
@@ -21,7 +37,7 @@ Before presenting our results, lets talk a little bit about quantum computing.
 
 ---
 
-# Quantum computing with qubits
+# Quantum computing overview
 
 .center[
 ![:img 90%](img/overview-blackboxes.svg)
@@ -74,17 +90,15 @@ circuit, which then gets sent to the quantum computer.
 ![:vspace .5em]()
 
 .center.padded[
-  ![:img 50%](img/tikz/superdenseCoding-circuit.svg)
+  ![:img 60%](img/tikz/superdenseCoding-circuit.svg)
 ]
 
+![:vspace .5em]()
+
 .padded[
-- Read from left to right
+- Pure quantum fragment (single wires), with classical operations (double wires)
 
-- Single horizontal wires for qubits, double wires for bits
-
-- Describe quantum gates to apply to qubits
-
-- Contains classically controlled quantum operators
+- Interpreted as complete positive maps between Hilbert spaces
 ]
 
 ???
@@ -97,46 +111,6 @@ circuit, which then gets sent to the quantum computer.
 Defined by the quantum architecture. Multi-qubit gates
 
 **[Classical control]**
-
----
-
-# Quantum circuit generators
-
-.padded[
-- Qubits are unitary vectors
-  ![:hspace 6em]()
-  \\(\alpha \ket{0} + \beta \ket{1} \in \C^2\\)
-
-![:vspace .5em]()
-
-- Unitary (invertible) operations
-  ![:hspace 4.1em]()
-  ![:img 15%](img/tikz/u.svg)
-  \\(\qquad U \in \C^{2^n \times 2^n}\\)
-
-![:vspace .5em]()
-
-- No cloning
-  ![:hspace 4.3em]()
-  \\(\not\exists U \; s.t. \qquad\\)
-  ![:img 25%](img/tikz/clone.svg)
-
-![:vspace .5em]()
-
-- Destructive measurement
-  ![:hspace 3.75em]()
-  \\(\ket{x}\\)![:img 20%](img/tikz/meas.svg)
-  \\(
-    \begin{cases}
-    \ket{0} \\\\
-    \ket{1}
-    \end{cases}
-  \\)
-
-]
-
-
-
 
 
 
@@ -215,14 +189,14 @@ We can sidestep that problem by using a more granular representation of the
 circuit based on the ZX calculus.
 
 **[ZX]** The ZX calculus is a formal graphical language that can represent any pure
-quantum circuit.
+quantum circuit. Introduced by **Bob Coecke** and **Ross Duncan**.
 
 **[Spiders]** The diagrams are simple graphs with some inputs and outputs and two kinds of nodes collored either green or red,
-we call the Z-spiders and X spiders. They are also labeled with a phase.
+we call the Z-spiders and X spiders. They are also labelled with a phase.
 
 **[HadamardW]** There is additionally a yellow constructor that represents a hadamard operation,
 but for simplicity in our graph we will replace that generator with a special
-kind of edge we call Hadamard wire.
+kind of edge we call **Hadamard wire**.
 
 **[Identities]**
 Here the degree 2 spiders are just identities.
@@ -253,23 +227,23 @@ changing the interpretation of the graph.
 
 ---
 count: false
-![:scaleSVG 3](img/tikz/pureZX-diag-0-0.svg)
+![:scaleSVG 4](img/tikz/pureZX-diag-0-0.svg)
 
 ---
 count: false
-![:scaleSVG 3](img/tikz/pureZX-diag-1.svg)
+![:scaleSVG 4](img/tikz/pureZX-diag-1.svg)
 
 ---
 count: false
-![:scaleSVG 3](img/tikz/pureZX-diag-2.svg)
+![:scaleSVG 4](img/tikz/pureZX-diag-2.svg)
 
 ---
 count: false
-![:scaleSVG 3](img/tikz/pureZX-diag-3.svg)
+![:scaleSVG 4](img/tikz/pureZX-diag-3.svg)
 
 ---
 count: false
-![:scaleSVG 3](img/tikz/pureZX-diag-4.svg)
+![:scaleSVG 4](img/tikz/pureZX-diag-4.svg)
 
 ???
 
@@ -313,36 +287,45 @@ then it does a translation into a ZX diagram in a special "graph-like" form,
 then it optimizes it using some specially crafted rules in a terminating algorithm,
 and finally it extracts the diagram back into a smaller circuit.
 
+**[Hard parts]**
+Emphasize hard parts. ZX is more expressive. Extraction uses graph-like, is heuristic.
+
 **[Our modifications]**
 We used this procedure as a base for our hybrid optimization.
 
 ----
 
 ---
-layout: true
 
 # The \\(\zxGnd\\)-calculus
 
 .padded[
 - \\(\zxGnd\\) adds a discarding *ground generator*
+
+.center[
+  ![:scaleSVG 4](img/tikz/gnd.svg)
 ]
+
+- Can encode classical operations
 
 .center.padded[
-  {{content}}
+  ![:scaleSVG 3.5](img/tikz/meas.svg)
+  \\(\qquad\quad\mapsto\qquad\\)
+  ![:scaleSVG 3](img/tikz/spiderZgnd-11.svg)
 ]
 
-.padded[
 - New rules to discard other generators
+
+.center.padded[
+  ![:scaleSVG 4](img/tikz/discard-a.svg)
+  \\(\qquad\quad=\qquad\\)
+  ![:scaleSVG 4](img/tikz/discard-b.svg)
+  ![:hspace 12em]()
+  ![:scaleSVG 4](img/tikz/gndConnection-sm-a.svg)
+  \\(\qquad\quad=\quad\qquad\\)
+  ![:scaleSVG 4](img/tikz/gndConnection-sm-b.svg)
 ]
 
-.center.font80[
-  ![:scaleSVG 3](img/tikz/discard-a.svg)
-  \\(\qquad=\qquad\\)
-  ![:scaleSVG 3](img/tikz/discard-b.svg)
-  ![:hspace 8em]()
-  ![:scaleSVG 3](img/tikz/gndConnection-sm-a.svg)
-  \\(\qquad=\qquad\\)
-  ![:scaleSVG 3](img/tikz/gndConnection-sm-b.svg)
 ]
 
 ???
@@ -357,14 +340,6 @@ these constructions "grounded spiders".
 **[rules]** ZX ground defines some extra rewrite rules, more notably the discarding rule 
 that removes spiders connected to ground,
 and the connection rule that lets us disconnect Hadamard wires between grounded spiders.
-
----
-
-![:scaleSVG 4](img/tikz/gnd.svg)
-
----
-count: false
-![:scaleSVG 4](img/tikz/spiderZgnd.svg)
 
 ---
 layout: true
@@ -442,106 +417,11 @@ into a strict version that does not allow multiple inputs, outputs, or grounds
 connected to the same spider.
 This will let us move the grounded spiders around so they interact together.
 
-----
-
----
-layout: true
-
-# Underlying open-graph
-
-![:vspace 2em]()
-
-.center.font110[
-  ![:img 35%](img/tikz/superdenseCoding-zx-strict-trim.svg)
-  \\(\; \mapsto \;\\)
-  <span style="width: 30%; display: inline-block">{{content}}</span>
-]
-
-.padded[
-- Labeled .blue[input] and .red[output] nodes
-
-- Admits a *focused gFlow*
-]
-
-???
-
-**[open-graph]** When we have a strictly graph-like diagram we can talk about
-its underlying structure in the form of an open-graph; a simple graph with sets
-of input and output nodes.
-
-**[ground outputs]** We mark the ground spiders as outputs because they represent the discarding
-of information into the environment.
-
-**[lost wires]**
-When we translated the circuit into a diagram we blured the separation between circuit wires, since here we can deform the graph freely.
-
-**[gFlow]**
-But we can define a property on the underlying open-graph called focused gFlow
-that will give us some notion of order on the spiders
-which will be necessary when we extract the diagram back into
-a circuit.
-
-**[Preserve gFlow]** It is important that we preserve the gFlow property,
-so we must restrict the rewriting rules we use when optimizing.
+**[Clifford rules]**
+The rules of the pure optimization paper continue to apply on the ground-free
+parts of the diagram.
 
 ----
-
-- Set of *Input*, *Output* nodes
-- Grounded spiders discard info
-- Admits a *focused gFlow*
-  - A notion imported from MBQC.
-  - (Guarantees uniformly stepwise strong determinism)
-
----
-![:img 100%](img/superdenseCoding-opengraph-io-strict.svg)
-
-???
-
----
-layout:false
-
-# ZX diagram optimization rules
-
-.padded[
-- Clifford optimization rules
-(Duncan et. al. arXiv:1902.03178):
-]
-
-.center[
-Local complementation: ![:hspace 1em]() ![:img 30%](img/tikz/lc-simp-box.svg)
-
-![:vspace 1em]()
-
-Pivot: ![:hspace 1em]() ![:img 70%](img/tikz/pivot-simp-box.svg)
-]
-
-???
-
-On the algorithm by Duncan et al. they introduced two gFlow preserving rules
-that eliminate spiders with a phase multiple of PI/2, called Clifford spiders.
-
-**[!-boxes]** The boxes in these diagrams represent any number of neighbour spiders.
-
-**[algorithm]** They defined their optimization algorithm by repeatedly applying
-these rules until reaching a stable diagram.
-Since both rules delete at least one spider,
-the algorithm terminates on some local minima.
-
-**[We adapted]** We adapted these rules and introduced some new ones to work with the ZX ground calculus .
-
-----
-
-- On a similar formulation of graph-like diagrams in the base ZX
-  - Ross Duncan, Alex Kissinger, Simon Perdrix, John van de Wetering
-
-- Base optimizations:
-  - Pivot paulis
-  - Local complementation of Cliffords
-
-- Bang-boxes
-  - Already-connected spiders get disconnected
-
-- Loop until finished
 
 ---
 
@@ -554,16 +434,16 @@ the algorithm terminates on some local minima.
 .center[
 
 Discarding: ![:hspace 1em]()
-![:img 13%](img/tikz/gndDiscard-a.svg)
+![:img 15%](img/tikz/gndDiscard-a.svg)
 \\(\ =\ \\)
-![:img 10%](img/tikz/gndDiscard-b.svg)
+![:img 12%](img/tikz/gndDiscard-b.svg)
 
 ![:vspace 2em]()
 
 Ground-Pauli pivot: ![:hspace 1em]()
-![:img 30%](img/tikz/gndDeletion-a.svg)
+![:img 25%](img/tikz/gndDeletion-a.svg)
 \\(\ =\ \\)
-![:img 30%](img/tikz/gndDeletion-b.svg)
+![:img 25%](img/tikz/gndDeletion-b.svg)
 
 ]
 
@@ -653,35 +533,41 @@ eliminate spiders from the diagram.
 
 ---
 
-![:img 15%](img/tikz/matrix-example.svg)
+<img src="img/tikz/matrix-example.svg" style="width: 15%; transform: rotate(90deg)">
 \\(\ \mapsto\ 
-  \begin{pmatrix}
-    1 & 1 \\\\
-    0 & 1 \\\\
-    0 & 1 \\\\
-  \end{pmatrix}
+  \left.
+    \begin{pmatrix}
+      1 & 1 \\\\
+      0 & 1 \\\\
+      0 & 1 \\\\
+    \end{pmatrix}
+  \right\\} \text{grounds}
 \\)
 
 ---
 count: false
-![:img 15%](img/tikz/matrix-example-1.svg)
+<img src="img/tikz/matrix-example-1.svg" style="width: 15%; transform: rotate(90deg)">
 \\(\ \mapsto\ 
+  \left.
   \begin{pmatrix}
     1 & 0 \\\\
     0 & 1 \\\\
     0 & 1 \\\\
   \end{pmatrix}
+  \right\\} \text{grounds}
 \\)
 
 ---
 count: false
-![:img 15%](img/tikz/matrix-example-2.svg)
+<img src="img/tikz/matrix-example-2.svg" style="width: 15%; transform: rotate(90deg)">
 \\(\ \mapsto\ 
+  \left.
   \begin{pmatrix}
     1 & 0 \\\\
     0 & 1 \\\\
     0 & 0 \\\\
   \end{pmatrix}
+  \right\\} \text{grounds}
 \\)
 
 ---
@@ -760,11 +646,65 @@ count: false
 ---
 count: false
 ![:vspace 54px]()
-![:scaleSVG 5.35](img/tikz/optimizationB-2.svg)
+![:scaleSVG 5.5](img/tikz/optimizationB-2.svg)
 
 ---
 count: false
 ![:scaleSVG 4](img/tikz/optimizationB-3.svg)
+
+---
+layout: false
+
+# Underlying open-graph
+
+![:vspace 3em]()
+
+.center.font110[
+  ![:img 35%](img/tikz/extraction-initial.svg)
+  \\(\; \mapsto \;\\)
+  ![:img 40%](img/extraction-initial-opengraph-io.svg)
+]
+
+.padded[
+- Labelled .red[input] and .blue[output/ground] nodes
+
+- Admits a *focused gFlow* \\((G, \prec)\\) property
+
+  - Gives a notion of order between nodes
+
+  - Guides the extraction heuristic process
+
+- Our optimization rules preserve the invariant
+]
+
+???
+
+**[open-graph]** When we have a strictly graph-like diagram we can talk about
+its underlying structure in the form of an open-graph; a simple graph with sets
+of input and output nodes.
+
+**[ground outputs]** We mark the ground spiders as outputs because they represent the discarding
+of information into the environment.
+
+**[lost wires]**
+When we translated the circuit into a diagram we blured the separation between circuit wires, since here we can deform the graph freely.
+
+**[gFlow]**
+But we can define a property on the underlying open-graph called focused gFlow
+that will give us some notion of order on the spiders
+which will be necessary when we extract the diagram back into
+a circuit.
+
+**[Preserve gFlow]** It is important that we preserve the gFlow property,
+so we must restrict the rewriting rules we use when optimizing.
+
+----
+
+- Set of *Input*, *Output* nodes
+- Grounded spiders discard info
+- Admits a *focused gFlow*
+  - A notion imported from MBQC.
+  - (Guarantees uniformly stepwise strong determinism)
 
 ---
 layout: true
@@ -772,7 +712,7 @@ layout: true
 # Circuit extraction
 
 .padded[
-- Based on Duncan et al.'s procedure
+- Based on Duncan et al.'s procedure, using the gFlow invariant
 
 - Introduces fan-in and fan-out extractions
 ]
@@ -909,20 +849,20 @@ count: false
 ![:img 50%](img/tikz/extraction-circ-final.svg)
 
 ---
-layout: false
+layout: true
 
 # Detecting classical wires
 
 .padded[
-- Label the wires that carry classical data
+- We want to detect wires carrying classical data
 
-- Use classical logic where possible
-]
+- Developed an heuristic algorithm based on label propagation
 
 .center[
-![:img 40%](img/extraction-classical.svg)
-![:vspace 1em]()
-![:img 40%](img/tikz/extraction-circ-classical.svg)
+  {{content}}
+]
+
+- Exact solution is equivalent to simulation (intractable)
 ]
 
 ???
@@ -943,11 +883,50 @@ And with this we have reached the final circuit.
 
   - Show just examples, not the full rules
 
+---
 
+![:img 50%](img/tikz/classicalization-0.svg)
+![:vspace 1em]()
+![:img 50%](img/tikz/extraction-circ-final.svg)
 
+---
 
+![:img 50%](img/tikz/classicalization-1.svg)
+![:vspace 1em]()
+![:img 50%](img/tikz/extraction-circ-classical.svg)
 
+---
+layout: false
 
+# Optimization results
+
+.padded[
+- We have implemented the full optimization procedure on the *pyzx* library
+
+- Experimentally validated on randomized circuits, using the Clifford
+  optimization as baseline
+
+![:vspace .5em]
+
+.center[
+![:img 45%](img/benchmarks/sizeReduction-measurementProbability-cliffordT-alternative.svg)
+![:hspace 2em]
+![:img 40%](img/benchmarks/sizeReduction-nGates-parityCirc.svg)
+]
+.center.font80[
+![:hspace 6em]
+Size reduction on Clifford+T circuits
+![:hspace 12em]
+Size reduction on parity classical circuits
+]
+
+]
+
+???
+
+Benchmarks compared with Clifford optimization.
+
+Tested on randomized Clifford+T circuits, parity-logic circuits
 
 
 
@@ -1000,10 +979,67 @@ count: false
 
 ---
 
+# The Quipper language family
+
+.padded[
+- **Quipper** is a functional quantum programming language
+  developed by Peter Selinger et al.
+
+- High-level language, with a focus on expressiveness and ease of use
+
+- Has sprouted a family of experimental languages
+
+- **Proto-Quiper-D**: formal variation with support for Dependent types [Fu et al. 2021]
+
+  - Type system based on Haskell's with linear types
+
+  - Proto-Quipper-D has a formal definition as lambda calculi with categorical
+    semantics
+
+![:vspace .5em]
+  
+- In this work, we use just a small fragment of Proto-Quipper-D
+
+]
+
+???
+**[Quipper]**
+
+- To describe introduce the compilation, we first must start with
+  a description language for quantum programs.
+- To this end we have chosen Proto-Quipper, a family of formalization languages for the Quipper 
+  quantum programming language.
+- Specifically, we are using **a fragment** of the recent Proto-Quipper-D variation, which provides linear depent types.
+<!-- - By Peter Selinger, with Francisco Rios and many other people -->
+<!-- - Interpreter implemented by Peng Fu -->
+
+**[Use]**
+
+- In this language, we can describe quantum computations
+  as maps between lists of "qubit" elements that are composed from primitive operations.
+- Using a syntax similar to Haskell.
+- Here, for example, we have a description of a program
+  that receives no input and produces a pair of qubits in a Bell state.
+- We can write directly by composing primitives to initialize the qubits,
+  apply a Hadamard gate, and then a CNOT.
+- Ase Qubits are linear resources, the type system ensures that we never clone nor discard one.
+
+**[Circuits]**
+
+- To be able to run on a quantum computer,
+  we must first generate a quantum circuit from this description.
+- So for example, here we have the result of compiling this program.
+- We can see the initialization, hadamard, and CNOT.
+- It is important to note that in this version of the language we will always compile
+  the complete program before executing.
+
+
+---
+
 # Quantum programs and circuits
 
 .padded[
-- Proto-Quipper-D [Fu et al. 2021] is a language for describing quantum programs
+- Proto-Quipper-D can describe concrete quantum programs
 
   ```haskell
   bell00 : ! (Unit -> Qubit * Qubit)
@@ -1099,50 +1135,6 @@ count: false
 
 ---
 
-# A low-level intermediate language
-
-.padded[
-- First candidate: the ZX calculus
-
-  .center[
-  `bell00`
-  ![:hspace 1em]
-  →
-  ![:hspace 1em]
-  ![:img 20%](img/tikz/bell-diag.svg)
-  ![:hspace 1em]
-  →
-  <img src="examples/bell.svg" style="width: 40%; margin-left:-2em">
-  ]
-
-![:vspace .5em]
-
-- May be used as an optimization step, or for verification of program rewritings 
-
-![:vspace 1em]
-
-![:hspace .4em]❗ Still restricted to concrete operations
-
-![:hspace .4em]❗ The compiled diagram has the same size complexity as the quantum circuit
-
-]
-
-???
-
-**[ZX]**
-
-- A first candidate may be to use the ZX-calculus, since it 
-- provides a more granular representation of quantum operations than the circuits.
-- This calculus has been succesfully used in optimization and verification tecniques,
-- as its formal rewrite system lets us define formally prove equivalenes between diagrams.
-
-**[Limitations]**
-
-- In this diagrams, edges carry one qubit of information,
-- We are still restricted to only represent concrete circuits
-
----
-
 # The SZX calculus
 
 .padded[
@@ -1157,10 +1149,13 @@ count: false
 
 - Can encode parallel and (bounded) iterative operations
   .center[
-  `cnotN` → \\(\qquad n \mapsto\ \\) ![:img 27%](img/tikz/cnots-szx.svg)
+  `cnotN` →
+  \\(\qquad n \mapsto\ \\) ![:img 25%](img/tikz/cnots-szx.svg)
+  \\(\quad\simeq\quad\\)
+  \\(n \mapsto\ \\) ![:img 25%](img/tikz/cnots-zx.svg)
   ]
 
-- Directly translatable to ZX
+- SZX instances can be directly translated to ZX
 ]
 
 ???
@@ -1193,7 +1188,339 @@ count: false
 
 **[cue Fragment]**
 - We can now use this idea to formalize a compilation procedure,
-- but first we must define which of the starting Proto-Quipper-D programs we are able to encode.
+- but first we must define which of the starting Proto-Quipper-D programs we are
+  able to encode.
+
+---
+
+# Translating simple functions
+
+.padded[
+
+.columns[
+.column[
+- Quantum states as diagram output
+
+  ```haskell
+  bell00 : ! Unit -> Qubit * Qubit
+  bell00 u = CNot (Init0 ()) $ H (Init0 ())
+  ```
+]
+.column.center[
+  ![:img 40%](img/tikz/trans-bell00.svg)
+]
+]
+
+.columns[
+.column[
+- Functions are equivalent to (input \\(\otimes\\) output) products
+
+  ```haskell
+  applyU : ! (n : Nat) -> Vec n Qubit -> Vec n Qubit
+  applyU n x = U n x
+  ```
+]
+
+.column.center[
+  \\(n \mapsto\ \\) ![:img 50%](img/tikz/trans-applyU.svg)
+]
+]
+
+.columns[
+.column[
+- Applications connects the corresponding wires
+
+  ```haskell
+  bell_U : ! Unit -> Vec n Qubit
+  bell_U u = applyU 2 $ bell00 ()
+  ```
+]
+
+.column.center[
+  ![:img 45%](img/tikz/trans-bellU.svg)
+]
+]
+
+
+]
+
+???
+
+**[Lying wires]**
+The wires in U should come from the left, I'm ignoring some complexity here.
+*Only topology matters*.
+
+---
+
+# Translating parametrized control flow
+
+
+.padded[
+
+.columns[
+.column[
+- Branching on a parameter
+
+  ```haskell
+    ifz n then X else Z : Qubit -> Qubit
+  ```
+]
+.column.center[
+  \\(n \mapsto\ \\) ![:img 55%](img/tikz/trans-ifz.svg)
+]
+]
+
+![:vspace 1em]
+
+.columns[
+.column[
+- Instantiating families with lists of parameters
+
+  ```haskell
+    for k in 1..n do H : Vec n Qubit -> Vec n Qubit
+  ```
+]
+.column.center[
+  \\(n \mapsto\ \\) ![:img 55%](img/tikz/trans-forRange.svg)
+]
+]
+
+![:vspace .5em]
+
+.columns[
+.column[
+
+]
+.column.center[
+  \\(\simeq \quad n \mapsto\ \\) ![:img 55%](img/tikz/trans-forRangeExploded.svg)
+]
+]
+
+]
+
+???
+
+**[Parameter controlled flow]**
+
+- The fragment has two terms that let parameters control the flow of the program.
+
+- First we have the for construction, which takes a list of integers 
+
+---
+
+# Example: Quantum Fourier transform for N qubits
+
+.padded[
+
+- Quantum analogue of the discrete Fourier Transform
+
+  ```haskell
+    qft : ! (n : Nat) -> Vec n Qubit -> Vec n Qubit
+  ```
+
+  ![:img 100%](img/qft6.svg)
+  
+- The compiled quantum circuit contains \\(\\mathcal{O}(n^2)\\) gates
+
+]
+
+???
+
+**[Example]**
+
+- Let's finish with a concrete example of a complex algorithm
+- The exists a quantum version of the Fourier Transform for lists of qubits
+- (do not look to deeply into this definition)
+- Here we have shown that it can be encode it in the fragment of Proto-Quipper-D
+- Normally a compilation into a quantum circuit requires a quadratic number of gates
+- We can do a constant size encoding
+
+- Let's go by parts
+
+---
+
+# Example: QFT translation
+
+.padded[
+
+- qft: ![:hspace 5.75em]() \\(n \mapsto\ \\) ![:hspace 4em]() ![:img 50%](img/tikz/qft-main.svg)
+
+![:vspace .5em]()
+
+- apply_crot: ![:hspace 1.25em]() \\(n,k \mapsto\ \\) ![:img 70%](img/tikz/qft-applycrot.svg)
+
+![:vspace .5em]()
+
+- crot: ![:hspace 5.4em]() \\(n \mapsto\ \\) ![:hspace 10em]() ![:img 25%](img/tikz/qft-crot.svg)
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+---
+class: inverse, noheader
+name: last
+
+.center.bold.font200.nomargin[
+  Conclusion
+]
+
+.center.nomargin[
+![:img 70%](img/overview-szx-dark.svg)
+]
+
+.hpadded[
+
+- Optimization and classicalisation procedures presented at QPL2022 - [arXiv:2206.09376](https://arxiv.org/abs/2206.09376)
+
+- IR compilation presented at APLAS 2021 - [arXiv:2109.06071](https://arxiv.org/abs/2109.06071)
+
+]
+
+???
+
+----
+
+--
+
+.center.bold[
+  Thanks!
+]
+
+---
+
+# Extra: ZX rewriting rules
+
+---
+
+# Extra: Hybrid optimization benchmarks
+
+---
+
+# Extra: Translating the 'accumap' primitive
+
+
+.padded.font80.center[
+
+\\(
+  \vdash \mathtt{accuMap}:
+  (n:\nat) \to \text{Vec } A\ n
+  \multimap \text{Vec } (A \multimap C \multimap B \otimes C)\ n
+  \multimap C \multimap \text{Vec } B\ n \otimes C
+  \quad
+\\)
+→
+
+![:vspace 1em]()
+
+\\(n \mapsto \\)
+![:img 70%](img/tikz/translation-accumap.svg)
+
+]
+
+---
+
+# Extra: Modified \\(\lambda_D\\) definition
+
+---
+
+# Extra: Quantum circuit generators
+
+.padded[
+- Qubits are unitary vectors
+  ![:hspace 11em]()
+  \\(\alpha \ket{0} + \beta \ket{1} \in \C^2\\)
+
+![:vspace .5em]()
+
+- Unitary (invertible) operations
+  ![:hspace 9.1em]()
+  ![:img 15%](img/tikz/u.svg)
+  \\(\qquad U \in \C^{2^n \times 2^n}\\)
+
+![:vspace .5em]()
+
+- Destructive measurement
+  ![:hspace 8.75em]()
+  \\(\ket{x}\\)![:img 20%](img/tikz/meas.svg)
+  \\(
+    \begin{cases}
+    \ket{0} \\\\
+    \ket{1}
+    \end{cases}
+  \\)
+
+]
+
+???
+
+**[formal definition]**
+
+CPMs between quantum states
+
+---
+layout:false
+
+# Clifford optimization rules
+
+.padded[
+- Clifford optimization rules
+(Duncan et. al. arXiv:1902.03178):
+]
+
+.center[
+Local complementation: ![:hspace 1em]() ![:img 30%](img/tikz/lc-simp-box.svg)
+
+![:vspace 1em]()
+
+Pivot: ![:hspace 1em]() ![:img 70%](img/tikz/pivot-simp-box.svg)
+]
+
+???
+
+On the algorithm by Duncan et al. they introduced two gFlow preserving rules
+that eliminate spiders with a phase multiple of PI/2, called Clifford spiders.
+
+**[!-boxes]** The boxes in these diagrams represent any number of neighbour spiders.
+
+**[algorithm]** They defined their optimization algorithm by repeatedly applying
+these rules until reaching a stable diagram.
+Since both rules delete at least one spider,
+the algorithm terminates on some local minima.
+
+**[We adapted]** We adapted these rules and introduced some new ones to work with the ZX ground calculus .
+
+----
+
+- On a similar formulation of graph-like diagrams in the base ZX
+  - Ross Duncan, Alex Kissinger, Simon Perdrix, John van de Wetering
+
+- Base optimizations:
+  - Pivot paulis
+  - Local complementation of Cliffords
+
+- Bang-boxes
+  - Already-connected spiders get disconnected
+
+- Loop until finished
 
 ---
 
@@ -1315,357 +1642,3 @@ count: false
 
 - I will ignore the translation brackets most of the time
 -->
-
----
-
-# Translating λs
-
-.padded[
-- State operations are represented diagrammatically
-
-![:vspace 1em]
-
-.center[
-
-\\(
-  \begin{prooftree}
-    \AxiomC{$\Gamma, x:{S_1},\Phi \vdash M:{S_2}$}
-  \RightLabel{ $\multimap_i$}
-  \UnaryInfC{$\Gamma, \Phi \vdash \mathbf{\lambda x^{S_1} . M} : {S_2}$}
-  \end{prooftree}
-  \quad
-\\)
-→
-\\(\quad |\Phi| \mapsto \\)
-![:img 25%](img/tikz/translation-lambda.svg)
-
-![:vspace 1em]
-
-\\(
-  \begin{prooftree}
-    \AxiomC{$\Gamma,\Phi_1 \vdash M:{S_1} \multimap {S_2}$}
-    \AxiomC{$\Delta,\Phi_2 \vdash N:{S_1}$}
-  \RightLabel{ $\multimap_e$}
-  \BinaryInfC{$\Gamma, \Delta, \Phi_1, \Phi_2 \vdash \mathbf{M\ N} : {S_2}$}
-  \end{prooftree}
-  \quad
-\\)
-→
-\\(\quad |\Phi_1|, |\Phi_2| \mapsto \\)
-![:img 25%](img/tikz/translation-apply.svg)
-
-]
-
-]
-
-???
-
-**[Lambda terms]**
-
-- Translating a lambda term for states is simply taking the
-  bound variable from the context of the internal term,
-- and connecting it back into the output type.
-- An application is then splitting that function type and connecting
-  the input to the input term and the output to the output of the diagram.
-
----
-
-# Parameter-dependent translations
-
-
-.padded[
-
-- We can instantiate families with lists of parameters
-
-.center[
-
-![:vspace .5em]
-
-\\(
-  \begin{prooftree}
-    \AxiomC{$n:\nat$}
-    \AxiomC{$\Phi\vdash V: \text{Vec } n\ \nat$}
-    \AxiomC{$k:\nat, \Phi, \Gamma\vdash M : A$}
-  \RightLabel{ for}
-  \TrinaryInfC{$\Phi, \Gamma^n \vdash \text{for } k\text{ in }V %
-    \text{ do }M : \text{Vec }n\ A$
-  }
-  \end{prooftree}
-  \quad
-\\)
-→
-\\(\quad |\Phi| \mapsto \\)
-![:img 20%](img/tikz/translation-for.svg)
-
-]
-
-![:vspace 1em]
-
-- Parameter-dependent branching maps non-taken path to zero-wires
-
-.font90.center[
-
-\\(
-  \begin{prooftree}
-    \AxiomC{$\Phi \vdash L:\nat$}
-    \AxiomC{$\Phi,\Gamma\vdash M:A$}
-    \AxiomC{$\Phi,\Gamma\vdash N:A$}
-  \RightLabel{ $\to_i$}
-  \TrinaryInfC{$\Phi, \Gamma \vdash \ifz{L}{M}{N} : A$}
-  \end{prooftree}
-  \quad
-\\)
-→
-\\(\quad |\Phi| \mapsto \\)
-![:img 30%](img/tikz/translation-ifz.svg)
-
-![:vspace .5em]
-
-.align-right[
-
-  with \\(l = \eval{L}(|\Phi|)\\)
-
-]
-
-]
-
-]
-
-???
-
-**[Parameter controlled flow]**
-
-- The fragment has two terms that let parameters control the flow of the program.
-
-- First we have the for construction, which takes a list of integers 
-
----
-
-# Example: Quantum Fourier transform for N qubits
-
-.hpadded[
-
-- Encoded as a lambda term
-  
-  .font90[
-
-    \\(
-    \definecolor{grey}{RGB}{0,0,0}
-    \begin{aligned}
-      \text{qft} &: (n:\nat) \to \vec{\ \qubit}{n}\multimap\vec{\qubit}{n} \\\\
-      \cgrey{\text{qft}} & \cgrey{:= \lambda' n^\nat.\lambda qs^{\vec{\qubit}{n}}.
-          \Qcompose} \\\\
-          & \cgrey{(\Qfor{k}{\text{reverse\_vec } (0..n)}
-          {\lambda qs'^{\vec{\qubit}{n}}.\text{apply\_crot } n\ k\ qs'})\ qs}
-    \end{aligned}
-    \\)
-  
-  ]
-
-  .font90[
-      
-    \\(
-    \begin{aligned}
-      \text{apply\_crot}&: (n:\nat) \to (k:\nat) \to \vec{\qubit}{n} \multimap \vec{\qubit}{n} \\\\
-      \cgrey{\text{apply\_crot}}& \cgrey{:= \lambda' n^\nat.\ \lambda' k^\nat.\ \lambda qs^{\vec{\qubit}{n}}.
-      \ifz{n-k}{qs}{}}\\\\
-      & \cgrey{\Qlet{h^{\vec{\qubit}{k}}\otimes qs'^{\vec{\qubit}{n-k}}}
-      {\Qsplit\ k\ (n-k)\ qs}{}}\\\\
-      & \cgrey{\Qlet{q^\qubit \otimes cs^{\vec{\qubit}{n-k-1}}}
-      {\text{chop } qs'}{}}\\\\
-      & \cgrey{\Qlet{fs^{\vec{(\qubit\otimes\qubit\multimap\qubit\otimes\qubit)}{(n-k-1)}}}
-      {\Qfor{m^\nat}{2..(n-k+1)}{\text{crot }m}}{}}\\\\
-      & \cgrey{\Qlet{cs'^{\vec{\qubit}{n-k-1}}\otimes q'} 
-      {\Qaccumap\ fs\ (H\ q)\ cs}{}}\\\\
-      & \cgrey{\text{concat } h\ (q':: cs')}
-    \end{aligned}
-    \\)
-  
-  ]
-
-  .font90[
-    
-    \\(
-    \begin{aligned}
-      \text{crot}&: (n:\nat)\to (\qubit\otimes\qubit)\multimap (\qubit\otimes\qubit)\\\\
-      \cgrey{\text{crot}}& \cgrey{:= \lambda' n^{\nat}.\lambda qs^{\qubit \otimes \qubit}.\ \Qlet{c^\qubit \otimes q^\qubit}{qs}{flip\ (R\ n\ q\ c)}}
-    \end{aligned}
-    \\)
-
-  ]
-
-- Compiled quantum circuit contains \\(\\mathcal{O}(n^2)\\) gates
-
-]
-
-???
-
-**[Example]**
-
-- Let's finish with a concrete example of a complex algorithm
-- The exists a quantum version of the Fourier Transform for lists of qubits
-- (do not look to deeply into this definition)
-- Here we have shown that it can be encode it in the fragment of Proto-Quipper-D
-- Normally a compilation into a quantum circuit requires a quadratic number of gates
-- We can do a constant size encoding
-
-- Let's go by parts
-
----
-count: false
-
-# Example: Quantum Fourier transform for N qubits
-
-.hpadded[
-
-- Encoded as a lambda term
-  
-  .font90[
-
-    \\(
-    \definecolor{grey}{RGB}{185,185,185}
-    \begin{aligned}
-      \text{qft} &: (n:\nat) \to \vec{\ \qubit}{n}\multimap\vec{\qubit}{n} \\\\
-      \cgrey{\text{qft}} & \cgrey{:= \lambda' n^\nat.\lambda qs^{\vec{\qubit}{n}}.
-          \Qcompose} \\\\
-          & \cgrey{(\Qfor{k}{\text{reverse\_vec } (0..n)}
-          {\lambda qs'^{\vec{\qubit}{n}}.\text{apply\_crot } n\ k\ qs'})\ qs}
-    \end{aligned}
-    \\)
-  
-  ]
-
-  .font90[
-      
-    \\(
-    \begin{aligned}
-      \text{apply\_crot}&: (n:\nat) \to (k:\nat) \to \vec{\qubit}{n} \multimap \vec{\qubit}{n} \\\\
-      \cgrey{\text{apply\_crot}}& \cgrey{:= \lambda' n^\nat.\ \lambda' k^\nat.\ \lambda qs^{\vec{\qubit}{n}}.
-      \ifz{n-k}{qs}{}}\\\\
-      & \cgrey{\Qlet{h^{\vec{\qubit}{k}}\otimes qs'^{\vec{\qubit}{n-k}}}
-      {\Qsplit\ k\ (n-k)\ qs}{}}\\\\
-      & \cgrey{\Qlet{q^\qubit \otimes cs^{\vec{\qubit}{n-k-1}}}
-      {\text{chop } qs'}{}}\\\\
-      & \cgrey{\Qlet{fs^{\vec{(\qubit\otimes\qubit\multimap\qubit\otimes\qubit)}{(n-k-1)}}}
-      {\Qfor{m^\nat}{2..(n-k+1)}{\text{crot }m}}{}}\\\\
-      & \cgrey{\Qlet{cs'^{\vec{\qubit}{n-k-1}}\otimes q'} 
-      {\Qaccumap\ fs\ (H\ q)\ cs}{}}\\\\
-      & \cgrey{\text{concat } h\ (q':: cs')}
-    \end{aligned}
-    \\)
-  
-  ]
-
-  .font90[
-    
-    \\(
-    \begin{aligned}
-      \text{crot}&: (n:\nat)\to (\qubit\otimes\qubit)\multimap (\qubit\otimes\qubit)\\\\
-      \cgrey{\text{crot}}& \cgrey{:= \lambda' n^{\nat}.\lambda qs^{\qubit \otimes \qubit}.\ \Qlet{c^\qubit \otimes q^\qubit}{qs}{flip\ (R\ n\ q\ c)}}
-    \end{aligned}
-    \\)
-
-  ]
-
-- Compiled quantum circuit contains \\(\\mathcal{O}(n^2)\\) gates
-
-]
-
-???
-
----
-
-# Example: QFT translation
-
-.padded[
-
-- crot: ![:hspace 5.4em]() \\(n \mapsto\\) ![:img 35%](img/tikz/qft-crot.svg)
-
-![:vspace .5em]()
-
-- apply_crot: ![:hspace 1.25em]() \\(n,k \mapsto\\) ![:img 70%](img/tikz/qft-applycrot.svg)
-
-![:vspace .5em]()
-
-- qft: ![:hspace 5.75em]() \\(n \mapsto\\) ![:img 50%](img/tikz/qft-main.svg)
-
-]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
----
-class: inverse, noheader
-name: last
-
-.padded[
-
-.center[
-![:img 70%](img/overview-szx-dark.svg)
-]
-
-- ?
-
-]
-
-???
-
-----
-
---
-
-.center.bold[
-  Thanks!
-]
-
----
-
-# Extra: ZX rewriting rules
-
----
-
-# Extra: Hybrid optimization benchmarks
-
----
-
-# Extra: Translating the 'accumap' primitive
-
-
-.padded.font80.center[
-
-\\(
-  \vdash \mathtt{accuMap}:
-  (n:\nat) \to \text{Vec } A\ n
-  \multimap \text{Vec } (A \multimap C \multimap B \otimes C)\ n
-  \multimap C \multimap \text{Vec } B\ n \otimes C
-  \quad
-\\)
-→
-
-![:vspace 1em]()
-
-\\(n \mapsto \\)
-![:img 70%](img/tikz/translation-accumap.svg)
-
-]
-
----
-
-# Extra: Modified \\(\lambda_D\\) definition

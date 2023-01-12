@@ -1,0 +1,41 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (1, -0.75) {};
+		\node [style=ground, rotate=0] (1) at (1, -1.5) {$\ground$};
+		\node [style=none] (7) at (-2, -0.75) {};
+		\node [style=none] (12) at (-2, 0.75) {};
+		\node [style=Z dot] (22) at (-0.5, -0.75) {};
+		\node [style=Z phase dot] (24) at (1.75, 0.75) {$\pi$};
+		\node [style=none] (26) at (7, -0.75) {};
+		\node [style=none] (27) at (7, 0.75) {};
+		\node [style=Z dot] (29) at (4, 0.75) {};
+		\node [style=X dot] (30) at (5.5, 0.75) {};
+		\node [style=Z dot] (31) at (5.5, -0.75) {};
+		\node [style=X dot] (32) at (-0.5, 0.75) {};
+		\node [style=X dot] (33) at (2.5, -0.75) {};
+		\node [style=X dot] (34) at (4, -0.75) {};
+		\node [style=none] (label0) at (-2.5, 0.75) {\tiny{Q}};
+		\node [style=none] (label1) at (-2.5, -0.75) {\tiny{C}};
+		\node [style=none] (label2) at (7.5, 0.75) {\tiny{Q}};
+		\node [style=none] (label3) at (7.5, -0.75) {\tiny{Q}};
+		\node [style=none] (35) at (-1.75, -0.5) {\tiny{$\color{blue} Z$}};
+		\node [style=none] (36) at (0.5, -0.5) {\tiny{$\color{blue} Z$}};
+		\node [style=none] (37) at (3, -0.5) {\tiny{$\color{blue} Z$}};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0) to (1.center);
+		\draw (22) to (0);
+		\draw (30) to (27.center);
+		\draw (31) to (26.center);
+		\draw (30) to (31);
+		\draw (29) to (30);
+		\draw [style=hadamard edge] (24) to (29);
+		\draw (7.center) to (22);
+		\draw (12.center) to (32);
+		\draw (32) to (24);
+		\draw (22) to (32);
+		\draw (33) to (34);
+		\draw (34) to (31);
+		\draw (34) to (29);
+	\end{pgfonlayer}
+\end{tikzpicture}

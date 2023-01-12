@@ -1,0 +1,33 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=black dot] (2) at (3, 0.5) {};
+		\node [style=black dot] (29) at (-4, -0.5) {};
+		\node [style=black dot] (33) at (-3, -0.5) {};
+		\node [style=black dot] (34) at (-2, 0.5) {};
+		\node [style=black dot] (35) at (-2, -0.5) {};
+		\node [style=black dot] (38) at (-1, 0) {};
+		\node [style=black dot] (39) at (2, 0.5) {};
+		\node [style=black dot] (40) at (0, 0) {};
+		\node [style=black dot] (42) at (1, 0) {};
+		\node [style=black dot] (45) at (2, -0.5) {};
+		\node [style=black dot] (47) at (3, -0.5) {};
+		\node [style=black dot] (49) at (3, -0.5) {};
+		\node [style=black dot] (50) at (3, -0.5) {};
+		\node [style=black dot] (54) at (2, 0.5) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (29) to (33);
+		\draw (33) to (35);
+		\draw (35) to (34);
+		\draw (40) to (38);
+		\draw (39) to (45);
+		\draw (39) to (2);
+		\draw (45) to (50);
+		\draw (34) to (38);
+		\draw (45) to (2);
+		\draw (54) to (42);
+		\draw (42) to (45);
+		\draw (40) to (42);
+		\draw (35) to (38);
+	\end{pgfonlayer}
+\end{tikzpicture}

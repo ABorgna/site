@@ -1,0 +1,19 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (1) at (3.5, 0.75) {};
+		\node [style=none] (2) at (-0.25, 1.75) {$\scriptstyle{n}$};
+		\node [style=box] (3) at (0, 0) {$U(n)$};
+		\node [style=gather] (4) at (2, 0.75) {};
+		\node [style=none] (5) at (-1.75, 0.75) {};
+		\node [style=none] (6) at (0, 1.5) {};
+		\node [style=none] (7) at (1.75, 0) {$\scriptstyle{n}$};
+		\node [style=none] (8) at (3, 1.25) {$\scriptstyle{2n}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=bold edge] (4.center) to (1.center);
+		\draw [style=bold edge, in=-90, out=180] (3) to (5.center);
+		\draw [style=bold edge, in=-180, out=90] (5.center) to (6.center);
+		\draw [style=bold edge, in=150, out=0, looseness=0.75] (6.center) to (4);
+		\draw [style=bold edge, in=210, out=0, looseness=0.75] (3) to (4);
+	\end{pgfonlayer}
+\end{tikzpicture}

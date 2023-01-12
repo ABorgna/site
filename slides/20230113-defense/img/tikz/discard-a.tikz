@@ -1,11 +1,11 @@
 \begin{tikzpicture}
 	\begin{pgfonlayer}{nodelayer}
-		\node [style=ground, rotate=-90] (1) at (0, 0) {\ground};
+		\node [style=ground, rotate=90] (1) at (2, 0) {\ground};
 		\node [style=Z phase dot] (2) at (1, 0) {$\alpha$};
-		\node [style=none] (3) at (2, 0) {};
+		\node [style=none] (3) at (0, 0) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (1.center) to (2);
-		\draw [in=180, out=0, looseness=1.50] (2) to (3.center);
+		\draw [in=0, out=180, looseness=1.50] (2) to (3.center);
 	\end{pgfonlayer}
 \end{tikzpicture}

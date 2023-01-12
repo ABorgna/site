@@ -1,0 +1,25 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (3) at (4, 0) {};
+		\node [style=gather] (4) at (3, 0) {};
+		\node [style=none] (10) at (3.75, 0.25) {$\scriptscriptstyle{n}$};
+		\node [style=box] (11) at (0, 1) {$H$};
+		\node [style=box] (12) at (0, -1) {$H$};
+		\node [style=split] (13) at (-3, 0) {};
+		\node [style=none] (14) at (-4, 0) {};
+		\node [style=none] (15) at (-3.75, 0.25) {$\scriptscriptstyle{n}$};
+		\node [style=none] (16) at (0, 0.25) {$\vdots$};
+		\node [style=none] (17) at (-1.75, 0) {};
+		\node [style=none] (18) at (1.5, 0) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [in=195, out=0] (12) to (4.center);
+		\draw [in=-180, out=15] (13) to (11);
+		\draw [in=180, out=-15] (13) to (12);
+		\draw [in=165, out=0] (11) to (4.center);
+		\draw [style=bold edge] (4.center) to (3.center);
+		\draw [style=bold edge] (14.center) to (13.center);
+		\draw (13.center) to (17.center);
+		\draw (18.center) to (4);
+	\end{pgfonlayer}
+\end{tikzpicture}

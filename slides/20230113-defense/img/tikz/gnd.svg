@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="36.429" height="31.976" viewBox="0 0 36.429 31.976">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="17.803" height="8.369" viewBox="0 0 17.803 8.369">
 <defs>
 <clipPath id="clip-0">
-<path clip-rule="nonzero" d="M 14 28 L 22 28 L 22 31.976562 L 14 31.976562 Z M 14 28 "/>
+<path clip-rule="nonzero" d="M 14 0 L 17.804688 0 L 17.804688 8 L 14 8 Z M 14 0 "/>
 </clipPath>
 </defs>
-<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00015625 -14.17275 L -0.00015625 -0.000875 " transform="matrix(1, 0, 0, -1, 18.215, 14.671)"/>
-<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -0.00015625 2.144844 L -0.00015625 0.0003125 " transform="matrix(1, 0, 0, -1, 18.215, 28.555)"/>
+<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 14.173875 0.00140625 L -0.00190625 0.00140625 " transform="matrix(1, 0, 0, -1, 0.498, 4.185)"/>
+<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M 0.00140625 2.143719 L 0.00140625 -0.0008125 " transform="matrix(0, -1, -1, 0, 14.382, 4.185)"/>
 <g clip-path="url(#clip-0)">
-<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -3.488437 -0.109063 L 3.488125 -0.109063 M -2.324375 -1.41375 L 2.324063 -1.41375 M -1.164219 -2.722344 L 1.163906 -2.722344 " transform="matrix(1, 0, 0, -1, 18.215, 28.555)"/>
+<path fill="none" stroke-width="0.3985" stroke-linecap="butt" stroke-linejoin="miter" stroke="rgb(0%, 0%, 0%)" stroke-opacity="1" stroke-miterlimit="10" d="M -3.486875 -0.106281 L 3.485781 -0.106281 M -2.322812 -1.414875 L 2.325625 -1.414875 M -1.162656 -2.723469 L 1.161563 -2.723469 " transform="matrix(0, -1, -1, 0, 14.382, 4.185)"/>
 </g>
 </svg>

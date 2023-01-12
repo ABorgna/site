@@ -2,20 +2,17 @@
 	\begin{pgfonlayer}{nodelayer}
 		\node [style=Z dot] (0) at (-8, 1) {};
 		\node [style=ground, rotate=180] (gnd0) at (-8, 1.75) {$\ground$};
-		\node [style=Z phase dot] (a) at (-14, 0) {$\ \alpha_i + j\pi\ $};
-		\node [style=Z phase dot] (b) at (-9.5, -1.25) {$\ \beta_j + (j+1)\pi\ $};
-		\node [style=Z phase dot] (c) at (-5, 0) {$\gamma_k$};
-		\node [style=none] (aP) at (-15.75, 0) {};
+		\node [style=Z phase dot] (a) at (-12, -0.25) {$\alpha_i'$};
+		\node [style=Z phase dot] (b) at (-9.5, -1.25) {$\beta_j'$};
+		\node [style=Z phase dot] (c) at (-7, -0.25) {$\gamma_k'$};
+		\node [style=none] (aP) at (-13, -0.25) {};
 		\node [style=none] (bP) at (-9.5, -2.25) {};
-		\node [style=none] (cP) at (-4, 0) {};
-		\node [style=bang box, minimum width=17.5mm] (aM) at (-14, 0) {};
-		\node [style=bang box, minimum width=22.5mm] (bM) at (-9.5, -1.25) {};
-		\node [style=bang box] (cM) at (-5, 0) {};
+		\node [style=none] (cP) at (-6, -0.25) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (0) to (gnd0.center);
 		\draw (a) to (aP.center);
-		\draw (b) to (bP.center);
+		\draw [in=90, out=-90] (b) to (bP.center);
 		\draw (c) to (cP.center);
 		\draw [style=hadamard edge] (a) to (b);
 		\draw [style=hadamard edge] (b) to (c);

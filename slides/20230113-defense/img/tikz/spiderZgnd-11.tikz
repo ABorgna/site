@@ -1,0 +1,14 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=Z dot] (0) at (0, 0) {};
+		\node [style=ground] (gnd) at (0, -1) {$\ground$};
+		\node [style=none] (1) at (1.25, 0) {};
+		\node [style=none] (2) at (-1.25, 0) {};
+		\node [style=none] (padding) at (0, 1) {};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw (0.center) to (gnd.center);
+		\draw (0) to (1.center);
+		\draw (2.center) to (0);
+	\end{pgfonlayer}
+\end{tikzpicture}

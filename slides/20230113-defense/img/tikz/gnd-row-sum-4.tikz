@@ -12,9 +12,6 @@
 		\node [style=Z dot] (49) at (-3.5, 0.75) {};
 		\node [style=ground, rotate=180] (50) at (-3.5, 1.5) {$\ground$};
 		\node [style=none] (51) at (-2.75, 0.75) {$v$};
-		\node [style=bang box] (52) at (-8, -0.75) {};
-		\node [style=bang box] (54) at (-2, -0.75) {};
-		\node [style=bang box] (55) at (-5, -0.75) {};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw (0) to (gnd.center);

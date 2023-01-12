@@ -8,10 +8,10 @@
 		\node [style=none] (27) at (4, -2) {};
 		\node [style=none] (33) at (-6, -1.5) {$\scriptstyle{n}$};
 		\node [style=none] (34) at (5.75, -1.5) {$\scriptstyle{n}$};
-		\node [style=none] (35) at (0, -2.25) {$\scriptstyle{n\times(n-1)}$};
+		\node [style=none] (35) at (0, -2.25) {$\scriptstyle{n*(n-1)}$};
 		\node [style=box] (36) at (0, -1) {$\substack{\text{apply\_crot}(n,k)\\\scriptscriptstyle{k \in rev(0..n)}}$};
-		\node [style=none] (37) at (-3, -0.75) {$\scriptstyle{n\times n}$};
-		\node [style=none] (38) at (3, -0.75) {$\scriptstyle{n\times n}$};
+		\node [style=none] (37) at (-3, -0.75) {$\scriptstyle{n* n}$};
+		\node [style=none] (38) at (3, -0.75) {$\scriptstyle{n* n}$};
 	\end{pgfonlayer}
 	\begin{pgfonlayer}{edgelayer}
 		\draw [style=bold edge, in=165, out=0] (7.center) to (25.center);

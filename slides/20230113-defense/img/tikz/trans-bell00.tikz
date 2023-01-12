@@ -1,0 +1,20 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style=none] (3) at (3, 0) {};
+		\node [style=gather] (4) at (2, 0) {};
+		\node [style=Z dot] (5) at (1, 0.5) {};
+		\node [style=X dot] (6) at (1, -0.5) {};
+		\node [style=hadamard] (7) at (0, 0.5) {};
+		\node [style=X dot] (8) at (-1, 0.5) {};
+		\node [style=X dot] (9) at (-1, -0.5) {};
+		\node [style=none] (10) at (2.75, 0.25) {$\scriptscriptstyle{2}$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [style=bold edge] (4.center) to (3.center);
+		\draw (8) to (7);
+		\draw (7) to (5);
+		\draw (9) to (6);
+		\draw [in=210, out=0, looseness=1.25] (6) to (4);
+		\draw [in=150, out=0, looseness=1.25] (5) to (4);
+	\end{pgfonlayer}
+\end{tikzpicture}
